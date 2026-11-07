@@ -1,43 +1,41 @@
-import { Link } from "react-router-dom";
+import { type ReactNode } from "react";
 
-export default function Hero() {
+interface Props {
+  bg: string;
+  bgPosition?: string;
+  eyebrow: string;
+  title: ReactNode;
+  text: string;
+  actions: ReactNode;
+  stats?: { strong: string; span: string }[];
+}
+
+export default function Hero({ bg, bgPosition, eyebrow, title, text, actions, stats }: Props) {
   return (
     <section className="hero">
-      <img className="hero-bg" src="/image%201.jpeg" alt="" aria-hidden="true" />
+      <img
+        className="hero-bg"
+        src={bg}
+        alt=""
+        aria-hidden="true"
+        style={bgPosition ? { objectPosition: bgPosition } : undefined}
+      />
       <div className="hero-scrim" aria-hidden="true" />
       <div className="wrap hero-copy reveal">
-        <div className="eyebrow">Rooted in nature · Established 2026</div>
-        <h1>
-          Good things
-          <br />
-          grow <em>here.</em>
-        </h1>
-        <p>
-          Welcome to Stoney Ridge Farm, where the goodness of the land and the
-          care behind every harvest bring a little more nature to your table.
-        </p>
-        <div className="actions">
-          <Link className="btn light" to="/offerings">
-            See what we offer
-          </Link>
-          <Link className="btn ghost" to="/about">
-            Our story
-          </Link>
-        </div>
-        <ul className="hero-stats">
-          <li>
-            <strong>Est. 2026</strong>
-            <span>A farm just beginning</span>
-          </li>
-          <li>
-            <strong>Nine offerings</strong>
-            <span>Orchard to table</span>
-          </li>
-          <li>
-            <strong>Farm tours</strong>
-            <span>By inquiry</span>
-          </li>
-        </ul>
+        <div className="eyebrow">{eyebrow}</div>
+        <h1>{title}</h1>
+        <p>{text}</p>
+        <div className="actions">{actions}</div>
+        {stats && (
+          <ul className="hero-stats">
+            {stats.map((stat) => (
+              <li key={stat.strong}>
+                <strong>{stat.strong}</strong>
+                <span>{stat.span}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );

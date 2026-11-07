@@ -1,31 +1,32 @@
 import { useState, type FormEvent } from "react";
 import { useLocation } from "react-router-dom";
 import { INTEREST_OPTIONS } from "../data";
-import { FARM_EMAIL } from "../config";
-import logo from "../assets/logo.jpg";
+import { FARM_EMAIL, SITE } from "../config";
+import BrandSeal from "../components/BrandSeal";
 
-const DEFAULT_NOTE =
-  "This form opens your email app with your message ready to send. Add the farm's email address in src/config.ts before publishing.";
+const READY_NOTE = "This form opens your email app with your message ready to send.";
+const MISSING_EMAIL_NOTE =
+  "The farm email address has not been added yet. Open src/config.ts and set FARM_EMAIL to your email address.";
 
 export default function Contact() {
   const location = useLocation();
   const state = location.state as { interest?: string } | null;
-  const [interest, setInterest] = useState(state?.interest ?? "General farm inquiry");
+  const [interest, setInterest] = useState(state?.interest ?? INTEREST_OPTIONS[0]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [note, setNote] = useState(DEFAULT_NOTE);
+  const [note, setNote] = useState(READY_NOTE);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const subject = encodeURIComponent("Stoney Ridge Farm inquiry — " + interest);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nInterest: ${interest}\n\n${message}`);
     if (!FARM_EMAIL) {
-      setNote(
-        "The form is working, but the farm email address has not been added yet. Open src/config.ts and set FARM_EMAIL to your email address.",
-      );
+      setNote(MISSING_EMAIL_NOTE);
       return;
     }
+    const subject = encodeURIComponent(`${SITE.name} inquiry — ${interest}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nInterest: ${interest}\n\n${message}`,
+    );
     window.location.href = `mailto:${FARM_EMAIL}?subject=${subject}&body=${body}`;
   }
 
@@ -33,9 +34,7 @@ export default function Contact() {
     <section className="contact">
       <div className="wrap contact-grid reveal">
         <div className="contact-intro">
-          <span className="brand-seal">
-            <img src={logo} alt="" />
-          </span>
+          <BrandSeal />
           <div className="eyebrow">Let's connect</div>
           <h2>Something good starts with a hello.</h2>
           <p>
@@ -43,11 +42,11 @@ export default function Contact() {
             us a message and tell us what you're looking for.
           </p>
           <p>
-            <strong>Stoney Ridge Farm</strong>
+            <strong>{SITE.name}</strong>
             <br />
-            Established 2026
+            Established {SITE.established}
             <br />
-            <em>From farm to table</em>
+            <em>{SITE.tagline}</em>
           </p>
         </div>
         <form className="contact-card" onSubmit={handleSubmit}>
@@ -101,7 +100,7 @@ export default function Contact() {
             />
           </div>
           <button className="btn" type="submit">
-            Prepare email ↗
+            Prepare email →
           </button>
           <div className="form-note" id="formNote">
             {note}

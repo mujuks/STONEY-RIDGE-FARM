@@ -4,36 +4,54 @@ import SectionHead from "../components/SectionHead";
 import ValuesGrid from "../components/ValuesGrid";
 import ProductGrid from "../components/ProductGrid";
 import GalleryGrid from "../components/GalleryGrid";
+import { SECTION_COPY } from "../data";
+import { SITE } from "../config";
 
 export default function Home() {
   return (
     <>
-      <Hero />
+      <Hero
+        bg="/image%201.jpeg"
+        eyebrow={`Rooted in nature · Established ${SITE.established}`}
+        title={
+          <>
+            Good things
+            <br />
+            grow <em>here.</em>
+          </>
+        }
+        text={`Welcome to ${SITE.name}, where the goodness of the land and the care behind every harvest bring a little more nature to your table.`}
+        actions={
+          <>
+            <Link className="btn light" to="/offerings">
+              See what we offer
+            </Link>
+            <Link className="btn ghost" to="/about">
+              Our story
+            </Link>
+          </>
+        }
+        stats={[
+          { strong: `Est. ${SITE.established}`, span: "A farm just beginning" },
+          { strong: "Nine offerings", span: "Orchard to table" },
+          { strong: "Farm tours", span: "By inquiry" },
+        ]}
+      />
       <div className="marquee">
         Fresh from nature <span>✦</span> Thoughtfully raised <span>✦</span>{" "}
-        Made for sharing <span>✦</span> From farm to table
+        Made for sharing <span>✦</span> {SITE.tagline}
       </div>
 
       <section>
         <div className="wrap">
-          <SectionHead
-            number="01"
-            eyebrow="The Stoney Ridge way"
-            title="Nature at the heart of everything."
-            text="We believe good food begins with respect for the land, attention to the details, and a deep appreciation for where our food comes from."
-          />
+          <SectionHead number="01" {...SECTION_COPY.values} />
           <ValuesGrid />
         </div>
       </section>
 
       <section className="products">
         <div className="wrap">
-          <SectionHead
-            number="02"
-            eyebrow="A taste of the farm"
-            title="Goodness in every harvest."
-            text="From orchard-inspired freshness to the simple goodness of farm staples, discover what makes Stoney Ridge Farm special."
-          />
+          <SectionHead number="02" {...SECTION_COPY.offerings} />
           <ProductGrid limit={6} />
           <div className="section-more">
             <Link className="link-more" to="/offerings">
@@ -45,12 +63,7 @@ export default function Home() {
 
       <section className="gallery">
         <div className="wrap">
-          <SectionHead
-            number="03"
-            eyebrow="A glimpse of farm life"
-            title="Little moments from nature."
-            text="From the colors of the harvest to the beauty of the countryside, here's a visual taste of the farm-to-table spirit."
-          />
+          <SectionHead number="03" {...SECTION_COPY.gallery} />
           <GalleryGrid limit={3} />
           <div className="section-more">
             <Link className="link-more" to="/gallery">
@@ -71,7 +84,7 @@ export default function Home() {
             </p>
             <div className="cta-actions">
               <Link className="btn light" to="/contact">
-                Get in touch ↗
+                Get in touch →
               </Link>
               <Link className="btn ghost" to="/about">
                 About the farm

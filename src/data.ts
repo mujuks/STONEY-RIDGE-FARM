@@ -29,6 +29,26 @@ export const NAV_LINKS = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
+export const SECTION_COPY = {
+  values: {
+    eyebrow: "The Stoney Ridge way",
+    title: "Nature at the heart of everything.",
+    lead: "We believe good food begins with respect for the land, attention to the details, and a deep appreciation for where our food comes from.",
+  },
+  offerings: {
+    eyebrow: "A taste of the farm",
+    title: "Goodness in every harvest.",
+    lead: "From orchard-inspired freshness to the simple goodness of farm staples, discover what makes Stoney Ridge Farm special.",
+  },
+  gallery: {
+    eyebrow: "A glimpse of farm life",
+    title: "Little moments from nature.",
+    lead: "From the colors of the harvest to the beauty of the countryside, here's a visual taste of the farm-to-table spirit.",
+  },
+} as const;
+
+export const TOURS_INTEREST = "Farm tours";
+
 export const VALUES: Value[] = [
   {
     symbol: "❧",
@@ -61,40 +81,16 @@ export const PRODUCTS: Product[] = [
 
 export const GALLERY: GalleryItem[] = [
   {
-    src: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=85",
-    alt: "Green fields and countryside beneath an open sky",
-    title: "Country Living",
+    src: "/farmstory.jpeg",
+    alt: "Farm workers celebrating together in the fields",
+    title: "Harvest Joy",
     caption: "Rooted in the land",
   },
   {
-    src: "https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=1000&q=85",
-    alt: "Fresh oranges and citrus fruit",
-    title: "Orchard Fresh",
-    caption: "Oranges & citrus",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1000&q=85",
-    alt: "Freshly harvested vegetables",
-    title: "Garden Goodness",
-    caption: "Fresh vegetables",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=1000&q=85",
-    alt: "Fresh red strawberries",
-    title: "Berry Patch",
-    caption: "Strawberries",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=1000&q=85",
-    alt: "Golden honey in a jar",
-    title: "Golden Honey",
-    caption: "Bees & pollinators",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1000&q=85",
-    alt: "Peaceful agricultural fields and farm landscape",
-    title: "Farm Tour Views",
-    caption: "Come explore",
+    src: "/moonlight.jpeg",
+    alt: "Full moon rising over calm water with a moored boat",
+    title: "Evening Calm",
+    caption: "Beauty of the countryside",
   },
   {
     src: "/products/oranges.jpg",
@@ -159,5 +155,5 @@ export const INTEREST_OPTIONS = [
   "Farm eggs",
   "Fish",
   "Current availability",
-  "Farm tours",
+  TOURS_INTEREST,
 ] as const;

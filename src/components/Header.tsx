@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { NAV_LINKS } from "../data";
-import logo from "../assets/logo.jpg";
+import { SITE } from "../config";
+import BrandSeal from "./BrandSeal";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -15,12 +16,10 @@ export default function Header() {
     <header>
       <div className="wrap nav">
         <Link className="brand" to="/">
-          <span className="brand-seal">
-            <img src={logo} alt="" />
-          </span>
+          <BrandSeal />
           <span>
-            <span className="brand-name">Stoney Ridge Farm</span>
-            <span className="brand-tag">From farm to table</span>
+            <span className="brand-name">{SITE.name}</span>
+            <span className="brand-tag">{SITE.tagline}</span>
           </span>
         </Link>
         <button
@@ -39,7 +38,7 @@ export default function Header() {
           ))}
         </nav>
         <Link className="navcta" to="/contact">
-          Get in touch ↗
+          Get in touch →
         </Link>
       </div>
     </header>

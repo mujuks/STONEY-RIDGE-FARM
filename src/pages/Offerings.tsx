@@ -1,14 +1,11 @@
 import PageHeader from "../components/PageHeader";
 import ProductGrid from "../components/ProductGrid";
+import { SECTION_COPY } from "../data";
 
 export default function Offerings() {
   return (
     <>
-      <PageHeader
-        eyebrow="A taste of the farm"
-        title="Goodness in every harvest."
-        lead="From orchard-inspired freshness to the simple goodness of farm staples, discover what makes Stoney Ridge Farm special."
-      />
+      <PageHeader {...SECTION_COPY.offerings} />
       <section className="products">
         <div className="wrap">
           <ProductGrid />

@@ -1,14 +1,9 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.jpg";
+import { NAV_LINKS } from "../data";
+import { SITE } from "../config";
+import BrandSeal from "./BrandSeal";
 
-const LINKS = [
-  { to: "/about", label: "Our Farm" },
-  { to: "/offerings", label: "Offerings" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/tours", label: "Farm Tours" },
-  { to: "/values", label: "Our Values" },
-  { to: "/contact", label: "Contact" },
-];
+const FOOTER_LINKS = NAV_LINKS.filter((link) => link.to !== "/");
 
 export default function Footer() {
   return (
@@ -16,16 +11,16 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer-top">
           <div className="footer-brand">
-            <span className="brand-seal">
-              <img src={logo} alt="" />
-            </span>
+            <BrandSeal />
             <span>
-              Stoney Ridge Farm
-              <small>From farm to table · Est. 2026</small>
+              {SITE.name}
+              <small>
+                {SITE.tagline} · Est. {SITE.established}
+              </small>
             </span>
           </div>
           <div className="footer-links">
-            {LINKS.map((link) => (
+            {FOOTER_LINKS.map((link) => (
               <Link key={link.to} to={link.to}>
                 {link.label}
               </Link>
@@ -33,7 +28,9 @@ export default function Footer() {
           </div>
         </div>
         <div className="copyright">
-          <span>© 2026 Stoney Ridge Farm. All rights reserved.</span>
+          <span>
+            © {SITE.established} {SITE.name}. All rights reserved.
+          </span>
           <span>Rooted in nature. Made for sharing.</span>
         </div>
       </div>
