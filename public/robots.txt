@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stoney-ridge-farm.vercel.app/sitemap.xml

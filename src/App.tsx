@@ -2,10 +2,9 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { OrderProvider } from "./components/OrderProvider";
 import Home from "./pages/Home";
-import Values from "./pages/Values";
-import GalleryPage from "./pages/GalleryPage";
-import Tours from "./pages/Tours";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
 function usePageEffects() {
@@ -45,22 +44,26 @@ function usePageEffects() {
 function Shell() {
   usePageEffects();
   return (
-    <>
+    <OrderProvider>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <Header />
-      <main>
+      <main id="main">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<Navigate to="/#about" replace />} />
-          <Route path="/offerings" element={<Navigate to="/#products" replace />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/about" element={<Navigate to="/#our-farm" replace />} />
+          <Route path="/offerings" element={<Navigate to="/#offerings" replace />} />
           <Route path="/contact" element={<Navigate to="/#contact" replace />} />
-          <Route path="/values" element={<Values />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/tours" element={<Tours />} />
+          <Route path="/values" element={<Navigate to="/#our-values" replace />} />
+          <Route path="/gallery" element={<Navigate to="/#gallery" replace />} />
+          <Route path="/tours" element={<Navigate to="/#farm-tours" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
-    </>
+    </OrderProvider>
   );
 }
 
