@@ -49,14 +49,14 @@ export const VALUES: Value[] = [
 
 export const PRODUCTS: Product[] = [
   { number: "01 / ORCHARD", title: "Oranges", text: "Bright, citrusy goodness to bring a little sunshine to your day.", img: "/products/oranges.jpg", imgAlt: "Fresh oranges and citrus fruit" },
-  { number: "02 / GROVE", title: "Avocados", text: "Naturally rich and versatile, made for fresh and flavorful meals.", img: "/products/avocado.jpg", imgAlt: "Fresh avocados in a wicker basket" },
-  { number: "03 / APIARY", title: "Honey & Bees", text: "A nod to the little pollinators that help our growing world thrive.", img: "/products/honey.jpg", imgAlt: "Golden honey in a jar" },
-  { number: "04 / FARMHOUSE", title: "Farm Eggs", text: "A timeless kitchen staple for breakfasts, baking, and family favorites.", img: "/products/eggs.jpg", imgAlt: "Fresh brown eggs in a straw nest" },
-  { number: "05 / WATERS", title: "Fish", text: "A fresh-from-the-water offering for wholesome meals around the table.", img: "/products/fish.jpg", imgAlt: "Fresh fish displayed on ice" },
-  { number: "06 / VINE", title: "Passion Fruit", text: "Tropical, fragrant fruit with a bright, tangy flavor.", img: "/products/passionfruit.jpg", imgAlt: "Ripe passion fruit, whole and halved" },
-  { number: "07 / BERRY PATCH", title: "Strawberries", text: "Sweet, colorful berries to enjoy fresh or share in seasonal treats.", img: "/products/strawberries.jpg", imgAlt: "Fresh red strawberries" },
+  { number: "02 / GROVE", title: "Avocados", text: "Naturally rich and versatile, made for fresh and flavorful meals.", img: "/products/avocado.jpeg", imgAlt: "Fresh avocados, whole and halved" },
+  { number: "03 / APIARY", title: "Honey & Bees", text: "A nod to the little pollinators that help our growing world thrive.", img: "/products/honey-bees.jpeg", imgAlt: "Golden honey with bees and honeycomb" },
+  { number: "04 / FARMHOUSE", title: "Farm Eggs", text: "A timeless kitchen staple for breakfasts, baking, and family favorites.", img: "/products/farm-eggs.jpeg", imgAlt: "Free-range hen at the farm" },
+  { number: "05 / WATERS", title: "Fish", text: "A fresh-from-the-water offering for wholesome meals around the table.", img: "/products/fish.jpeg", imgAlt: "Fisherman holding the day's fresh catch" },
+  { number: "06 / VINE", title: "Passion Fruit", text: "Tropical, fragrant fruit with a bright, tangy flavor.", img: "/products/passion-fruit.jpeg", imgAlt: "Ripe passion fruit, whole and halved" },
+  { number: "07 / BERRY PATCH", title: "Strawberries", text: "Sweet, colorful berries to enjoy fresh or share in seasonal treats.", img: "/products/strawberries.jpeg", imgAlt: "Bowl of fresh ripe strawberries" },
   { number: "08 / GARDEN", title: "Fresh Vegetables", text: "A variety of garden vegetables for wholesome, everyday cooking.", img: "/products/vegetables.jpg", imgAlt: "Freshly harvested garden vegetables" },
-  { number: "09 / THE PANTRY", title: "Seasonal Goodness", text: "Our farm story grows with the seasons and the gifts nature provides.", img: "/products/seasonal.jpg", imgAlt: "Wicker basket of freshly picked vegetables" },
+  { number: "09 / THE PANTRY", title: "Seasonal Goodness", text: "Our farm story grows with the seasons and the gifts nature provides.", img: "/products/seasonal-goodness.jpeg", imgAlt: "Basket of seasonal fruit and vegetables" },
 ];
 
 export const GALLERY: GalleryItem[] = [
