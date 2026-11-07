@@ -1,96 +1,112 @@
-import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
-import SectionHead from "../components/SectionHead";
-import ValuesGrid from "../components/ValuesGrid";
 import ProductGrid from "../components/ProductGrid";
-import GalleryGrid from "../components/GalleryGrid";
-import { SECTION_COPY } from "../data";
-import { SITE } from "../config";
+import { CONTACT, SITE, whatsappLink } from "../config";
 
 export default function Home() {
   return (
     <>
       <Hero
         bg="/image%201.jpeg"
-        eyebrow={`Rooted in nature · Established ${SITE.established}`}
-        title={
-          <>
-            Good things
-            <br />
-            grow <em>here.</em>
-          </>
-        }
-        text={`Welcome to ${SITE.name}, where the goodness of the land and the care behind every harvest bring a little more nature to your table.`}
+        bgAlt="Two farmers holding a crate of fresh vegetables at the farm"
+        title="Fresh from our ridge to your table"
+        text="Eggs, honey, produce and fish. Order today, pick up or get it delivered."
         actions={
           <>
-            <Link className="btn light" to="/offerings">
-              See what we offer
-            </Link>
-            <Link className="btn ghost" to="/about">
-              Our story
-            </Link>
+            <a
+              className="btn btn-primary"
+              href={whatsappLink("Hello Stoney Ridge Farm, I'd like to order")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Order on WhatsApp
+            </a>
+            <a className="btn" href="#products">
+              See prices
+            </a>
           </>
         }
-        stats={[
-          { strong: `Est. ${SITE.established}`, span: "A farm just beginning" },
-          { strong: "Nine offerings", span: "Orchard to table" },
-          { strong: "Farm tours", span: "By inquiry" },
-        ]}
       />
-      <div className="marquee">
-        Fresh from nature <span>✦</span> Thoughtfully raised <span>✦</span>{" "}
-        Made for sharing <span>✦</span> {SITE.tagline}
-      </div>
 
-      <section>
+      <section id="products" className="section-products" aria-labelledby="products-title">
         <div className="wrap">
-          <SectionHead number="01" {...SECTION_COPY.values} />
-          <ValuesGrid />
-        </div>
-      </section>
-
-      <section className="products">
-        <div className="wrap">
-          <SectionHead number="02" {...SECTION_COPY.offerings} />
-          <ProductGrid limit={6} />
-          <div className="section-more">
-            <Link className="link-more" to="/offerings">
-              View all offerings
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="gallery">
-        <div className="wrap">
-          <SectionHead number="03" {...SECTION_COPY.gallery} />
-          <GalleryGrid limit={3} />
-          <div className="section-more">
-            <Link className="link-more" to="/gallery">
-              See the full gallery
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="cta">
-        <div className="wrap">
-          <div className="cta-card reveal">
-            <div className="eyebrow">Visit · Taste · Connect</div>
-            <h2>Come see what's growing.</h2>
-            <p>
-              Ask about current availability, plan a farm tour, or simply say
-              hello — something good always starts with a conversation.
+          <div className="section-intro reveal">
+            <h2 id="products-title">What we grow</h2>
+            <p className="section-lead">
+              From orchard-inspired freshness to the simple goodness of farm
+              staples, discover what makes Stoney Ridge Farm special.
             </p>
-            <div className="cta-actions">
-              <Link className="btn light" to="/contact">
-                Get in touch →
-              </Link>
-              <Link className="btn ghost" to="/about">
-                About the farm
-              </Link>
-            </div>
           </div>
+          <ProductGrid />
+          <p className="note">
+            Availability may vary by season. Contact us to ask about current
+            offerings.
+          </p>
+        </div>
+      </section>
+
+      <section id="about" className="section-about" aria-labelledby="about-title">
+        <div className="wrap about-grid">
+          <div className="about-media reveal">
+            <img
+              src="/grow.jpeg"
+              alt="Watering young seedlings growing in dark soil"
+              width={571}
+              height={830}
+              loading="lazy"
+            />
+          </div>
+          <div className="about-copy reveal">
+            <h2 id="about-title">About the farm</h2>
+            <p>
+              Bees and honey lead the story of our farm—oranges and avocados,
+              eggs and fish follow, alongside the mountain homestead that
+              inspires our name. Each harvest represents our appreciation for
+              the many gifts that find their way to a family table. As our farm
+              grows, we look forward to sharing more of that goodness with you.
+            </p>
+            <p className="established">Established {SITE.established}</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="section-contact" aria-labelledby="contact-title">
+        <div className="wrap contact-grid">
+          <div className="contact-intro reveal">
+            <h2 id="contact-title">Get in touch</h2>
+            <p className="section-lead">
+              Have a question about our farm or want to ask what's available?
+              Message us on WhatsApp — something good always starts with a
+              conversation.
+            </p>
+            <a
+              className="btn btn-primary"
+              href={whatsappLink("Hello Stoney Ridge Farm, I'd like to ask about your products.")}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Order on WhatsApp
+            </a>
+          </div>
+          <dl className="contact-details reveal">
+            <div>
+              <dt>Phone</dt>
+              <dd>
+                <a href={`tel:${CONTACT.phone}`}>{CONTACT.phone}</a>
+              </dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd>{CONTACT.location}</dd>
+            </div>
+            <div>
+              <dt>Delivery</dt>
+              <dd>{CONTACT.deliveryArea}</dd>
+            </div>
+            <div>
+              <dt>Pickup</dt>
+              <dd>{CONTACT.pickupHours}</dd>
+            </div>
+          </dl>
         </div>
       </section>
     </>

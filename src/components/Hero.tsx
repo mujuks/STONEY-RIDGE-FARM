@@ -2,40 +2,34 @@ import { type ReactNode } from "react";
 
 interface Props {
   bg: string;
+  bgAlt: string;
   bgPosition?: string;
-  eyebrow: string;
+  eyebrow?: string;
   title: ReactNode;
   text: string;
   actions: ReactNode;
-  stats?: { strong: string; span: string }[];
 }
 
-export default function Hero({ bg, bgPosition, eyebrow, title, text, actions, stats }: Props) {
+export default function Hero({ bg, bgAlt, bgPosition, eyebrow, title, text, actions }: Props) {
   return (
     <section className="hero">
       <img
         className="hero-bg"
         src={bg}
-        alt=""
-        aria-hidden="true"
+        alt={bgAlt}
+        width={1400}
+        height={767}
+        fetchPriority="high"
         style={bgPosition ? { objectPosition: bgPosition } : undefined}
       />
       <div className="hero-scrim" aria-hidden="true" />
-      <div className="wrap hero-copy reveal">
-        <div className="eyebrow">{eyebrow}</div>
-        <h1>{title}</h1>
-        <p>{text}</p>
-        <div className="actions">{actions}</div>
-        {stats && (
-          <ul className="hero-stats">
-            {stats.map((stat) => (
-              <li key={stat.strong}>
-                <strong>{stat.strong}</strong>
-                <span>{stat.span}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+      <div className="wrap">
+        <div className="hero-inner reveal">
+          {eyebrow && <div className="eyebrow">{eyebrow}</div>}
+          <h1>{title}</h1>
+          <p>{text}</p>
+          <div className="hero-actions">{actions}</div>
+        </div>
       </div>
     </section>
   );

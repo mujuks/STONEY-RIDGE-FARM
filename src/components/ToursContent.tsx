@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { TOURS_INTEREST } from "../data";
 import StoryBlock from "./StoryBlock";
 
 export default function ToursContent() {
@@ -24,7 +23,7 @@ export default function ToursContent() {
         confirmed in advance.
       </p>
       <div className="actions">
-        <Link className="btn" to="/contact" state={{ interest: TOURS_INTEREST }}>
+        <Link className="btn" to="/#contact">
           Ask about a tour ↗
         </Link>
       </div>

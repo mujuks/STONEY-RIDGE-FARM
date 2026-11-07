@@ -1,12 +1,11 @@
 import { GALLERY } from "../data";
 
-export default function GalleryGrid({ limit }: { limit?: number }) {
-  const items = limit ? GALLERY.slice(0, limit) : GALLERY;
+export default function GalleryGrid() {
   return (
-    <div className={`gallery-grid reveal${limit ? " gallery-grid--preview" : ""}`}>
-      {items.map((item) => (
+    <div className="gallery-grid reveal">
+      {GALLERY.map((item) => (
         <figure className="gallery-card" key={item.title}>
-          <img src={item.src} alt={item.alt} loading="lazy" />
+          <img src={item.src} alt={item.alt} width={640} height={480} loading="lazy" />
           <figcaption>
             {item.title}
             <small>{item.caption}</small>

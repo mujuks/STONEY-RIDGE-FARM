@@ -1,22 +1,25 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Values from "./pages/Values";
-import Offerings from "./pages/Offerings";
 import GalleryPage from "./pages/GalleryPage";
 import Tours from "./pages/Tours";
-import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 function usePageEffects() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    const id = hash.startsWith("#") ? hash.slice(1) : "";
+    const target = id ? document.getElementById(id) : null;
+    if (target) {
+      requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
 
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>(".reveal");
@@ -47,12 +50,12 @@ function Shell() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<Navigate to="/#about" replace />} />
+          <Route path="/offerings" element={<Navigate to="/#products" replace />} />
+          <Route path="/contact" element={<Navigate to="/#contact" replace />} />
           <Route path="/values" element={<Values />} />
-          <Route path="/offerings" element={<Offerings />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/tours" element={<Tours />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
