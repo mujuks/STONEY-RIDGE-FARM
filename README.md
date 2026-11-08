@@ -1,6 +1,6 @@
 # Stoney Ridge Farm
 
-Marketing + ordering site for Stoney Ridge Farm — one-page React app with a
+Marketing + ordering site for Stoney Ridge Farm — React app with a
 WhatsApp-first ordering flow, farm tours, gallery and contact form.
 
 **Live:** https://stoney-ridge-farm.vercel.app
@@ -8,7 +8,9 @@ WhatsApp-first ordering flow, farm tours, gallery and contact form.
 ## Stack
 
 - [Vite](https://vite.dev) + React 19 + TypeScript
-- [react-router-dom](https://reactrouter.com) (routes: `/`, `/privacy`, 404)
+- [react-router-dom](https://reactrouter.com) (path routes: `/`, `/our-farm`,
+  `/products`, `/gallery`, `/farm-tours`, `/our-values`, `/contact`,
+  `/privacy`, 404)
 - Plain CSS with design tokens — see [`BRAND.md`](./BRAND.md)
 - [lucide-react](https://lucide.dev) icons only
 
@@ -34,7 +36,7 @@ Project is linked to Vercel (`mujuks1/stoney-ridge-farm`). Every push to
 
 All copy, prices, links and data live in **`src/data/site.ts`**:
 
-- `WHATSAPP_NUMBER` — international format, no `+` (e.g. `2547XXXXXXXX`)
+- `WHATSAPP_NUMBER` — international format, no `+` (currently `254115375306`)
 - `CONTACT.email` via `CONTACT_EMAIL` — enables the email form (falls back
   to WhatsApp when empty)
 - `PRODUCTS` — the nine offerings, categories and `price` fields
@@ -49,7 +51,7 @@ Optional env (`.env.local`):
 
 ## Supply checklist (before launch)
 
-- [ ] Real WhatsApp number in `src/data/site.ts` → `WHATSAPP_NUMBER`
+- [x] WhatsApp number in `src/data/site.ts` → `WHATSAPP_NUMBER` (`254115375306`)
 - [ ] Real email → `CONTACT_EMAIL` (or set `VITE_CONTACT_ENDPOINT`)
 - [ ] Real prices for all nine products (`KES 000` → actual)
 - [ ] Delivery areas, pickup hours, minimum order, tour price/duration

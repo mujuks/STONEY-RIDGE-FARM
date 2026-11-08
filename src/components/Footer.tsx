@@ -12,8 +12,6 @@ import Logo from "./Logo";
 import RidgeDivider from "./RidgeDivider";
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="site-footer">
       <RidgeDivider fill="var(--deep-forest)" className="footer-ridge" />
@@ -36,9 +34,9 @@ export default function Footer() {
         <nav className="footer-col" aria-label={FOOTER.quickLinksLabel}>
           <h2>{FOOTER.quickLinksLabel}</h2>
           {NAV_LINKS.map((link) => (
-            <a key={link.id} href={`/#${link.id}`}>
+            <Link key={link.id} to={link.path}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -67,10 +65,13 @@ export default function Footer() {
 
       <div className="wrap footer-bottom">
         <small>
-          © {year} {SITE.name}. All rights reserved.
+          © {SITE.established} {SITE.name}. All rights reserved.
         </small>
         <small>
-          {SITE.tagline} · Established {SITE.established}
+          Developed by{" "}
+          <a href="https://github.com/mujuks" target="_blank" rel="noopener noreferrer">
+            Max-mujuks
+          </a>
         </small>
       </div>
     </footer>

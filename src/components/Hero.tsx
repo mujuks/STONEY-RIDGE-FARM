@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { buildWhatsAppLink, HERO } from "../data/site";
 import RidgeDivider from "./RidgeDivider";
@@ -37,7 +38,13 @@ function CountUp({ value }: { value: number }) {
       { threshold: 0.4 },
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    /* Safety: never leave the stat stuck at 0 if the observer or
+       animation frame does not run (e.g. headless/virtual time). */
+    const fallback = window.setTimeout(() => setDisplay(value), 2500);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, [value]);
 
   return <span ref={ref}>{display}</span>;
@@ -76,12 +83,12 @@ export default function Hero() {
               Order on WhatsApp
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
-            <a className="btn btn-cream" href="#our-farm">
+            <Link className="btn btn-cream" to="/our-farm">
               Explore our farm
-            </a>
-            <a className="btn btn-outline-light" href="#our-values">
+            </Link>
+            <Link className="btn btn-outline-light" to="/our-values">
               Our story
-            </a>
+            </Link>
           </div>
 
           <dl className="hero-stats reveal">

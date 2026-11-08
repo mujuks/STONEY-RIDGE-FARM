@@ -7,11 +7,22 @@ import Home from "./pages/Home";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
+/* Section paths: URL path → element id on the Home page. */
+const SECTION_PATHS: Record<string, string> = {
+  "/our-farm": "our-farm",
+  "/products": "offerings",
+  "/gallery": "gallery",
+  "/farm-tours": "farm-tours",
+  "/our-values": "our-values",
+  "/contact": "contact",
+};
+
 function usePageEffects() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    const id = hash.startsWith("#") ? hash.slice(1) : "";
+    const hashId = hash.startsWith("#") ? hash.slice(1) : "";
+    const id = hashId || SECTION_PATHS[pathname] || "";
     const target = id ? document.getElementById(id) : null;
     if (target) {
       requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
@@ -52,13 +63,17 @@ function Shell() {
       <main id="main">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/our-farm" element={<Home />} />
+          <Route path="/products" element={<Home />} />
+          <Route path="/gallery" element={<Home />} />
+          <Route path="/farm-tours" element={<Home />} />
+          <Route path="/our-values" element={<Home />} />
+          <Route path="/contact" element={<Home />} />
           <Route path="/privacy" element={<Privacy />} />
-          <Route path="/about" element={<Navigate to="/#our-farm" replace />} />
-          <Route path="/offerings" element={<Navigate to="/#offerings" replace />} />
-          <Route path="/contact" element={<Navigate to="/#contact" replace />} />
-          <Route path="/values" element={<Navigate to="/#our-values" replace />} />
-          <Route path="/gallery" element={<Navigate to="/#gallery" replace />} />
-          <Route path="/tours" element={<Navigate to="/#farm-tours" replace />} />
+          <Route path="/about" element={<Navigate to="/our-farm" replace />} />
+          <Route path="/offerings" element={<Navigate to="/products" replace />} />
+          <Route path="/values" element={<Navigate to="/our-values" replace />} />
+          <Route path="/tours" element={<Navigate to="/farm-tours" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

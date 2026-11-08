@@ -11,9 +11,8 @@ export const SITE = {
   domain: "https://stoney-ridge-farm.vercel.app",
 } as const;
 
-/* TODO: replace with your real WhatsApp number, international
-   format without + (for example 2547XXXXXXXX). */
-export const WHATSAPP_NUMBER = "PHONE_NUMBER";
+/* International format without + (254 + national number, no leading 0). */
+export const WHATSAPP_NUMBER = "254115375306";
 
 /* TODO: replace with your real contact email. When empty the
    email UI is hidden and the form falls back to WhatsApp. */
@@ -55,8 +54,7 @@ export function buildOrderMessage(
 }
 
 export const CONTACT = {
-  /* TODO: replace with your real phone number (same as WhatsApp). */
-  phone: WHATSAPP_NUMBER,
+  phone: "+254 115 375 306",
   location: "Nairobi, Kenya",
   /* TODO: replace with your delivery areas. */
   deliveryArea: "[Add delivery areas]",
@@ -69,17 +67,18 @@ export const CONTACT = {
 
 export interface NavLink {
   id: string;
+  path: string;
   label: string;
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { id: "home", label: "Home" },
-  { id: "our-farm", label: "Our farm" },
-  { id: "offerings", label: "What we offer" },
-  { id: "gallery", label: "Gallery" },
-  { id: "farm-tours", label: "Farm tours" },
-  { id: "our-values", label: "Our values" },
-  { id: "contact", label: "Contact" },
+  { id: "home", path: "/", label: "Home" },
+  { id: "our-farm", path: "/our-farm", label: "Our farm" },
+  { id: "offerings", path: "/products", label: "What we offer" },
+  { id: "gallery", path: "/gallery", label: "Gallery" },
+  { id: "farm-tours", path: "/farm-tours", label: "Farm tours" },
+  { id: "our-values", path: "/our-values", label: "Our values" },
+  { id: "contact", path: "/contact", label: "Contact" },
 ];
 
 /* ---------- hero ---------- */
