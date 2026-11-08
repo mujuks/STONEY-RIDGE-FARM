@@ -1534,3 +1534,36 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
   .gallery-card:hover img { transform: none; }
   .tray-panel { transition: none; }
 }
+
+/* ---------- landscape phones (short viewports) ----------
+   Rotating gives a tablet-like WIDTH with a tiny HEIGHT, so
+   vw-scaled type and tall paddings would overflow the screen.
+   Key sizing becomes height-based and paddings shrink. */
+@media (orientation: landscape) and (max-height: 520px) {
+  :root { --section-y: 44px; }
+
+  .hero {
+    min-height: auto;
+    padding: 36px 0 52px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 8vh, 46px);
+    margin-bottom: 12px;
+  }
+  .hero-eyebrow { margin-bottom: 10px; }
+  .hero-text {
+    font-size: 15px;
+    margin-bottom: 18px;
+    max-width: 46em;
+  }
+  .hero-actions { gap: 10px; }
+  .hero-stats {
+    margin-top: 22px;
+    gap: 24px;
+  }
+  .hero-stat dd { font-size: 24px; }
+  .hero-ridge { height: 40px; }
+
+  .farm-media { min-height: 240px; }
+  .tray-panel { max-height: 92vh; }
+}
