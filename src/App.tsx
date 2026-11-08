@@ -45,7 +45,6 @@ function usePageEffects() {
       { threshold: 0.08, rootMargin: "0px 0px -50px 0px" },
     );
     els.forEach((el) => {
-      el.classList.remove("is-visible");
       observer.observe(el);
     });
     return () => observer.disconnect();

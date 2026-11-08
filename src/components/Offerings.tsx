@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Check, Minus, Plus } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import {
   OFFERINGS,
   PRODUCTS,
@@ -21,13 +22,40 @@ function Price({ price }: { price: string }) {
   return <span className="price">{price}</span>;
 }
 
+function slug(cat: ProductCategory) {
+  return cat.toLowerCase().replace(/ /g, "-");
+}
+
 function ProductCard({ product }: { product: Product }) {
   const { add, remove, qtyOf, lastAdded } = useOrder();
   const qty = qtyOf(product.id);
   const justAdded = lastAdded === product.id;
+  const cardRef = useRef<HTMLElement>(null);
+
+  /* Cards re-mount when the category filter changes, so each card
+     reveals itself instead of relying on the page-level observer. */
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("is-visible");
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          el.classList.add("is-visible");
+          io.disconnect();
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -50px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <article className="product-card reveal">
+    <article ref={cardRef} className="product-card reveal-self">
       <div className="product-media">
         <img src={product.img} alt={product.alt} width={640} height={480} loading="lazy" />
         {qty > 0 && (
@@ -74,7 +102,10 @@ function ProductCard({ product }: { product: Product }) {
 }
 
 export default function Offerings() {
-  const [category, setCategory] = useState<ProductCategory>("All");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const param = (searchParams.get("category") ?? "").toLowerCase();
+  const category: ProductCategory =
+    PRODUCT_CATEGORIES.find((c) => slug(c) === param) ?? "All";
 
   const visible = useMemo(
     () =>
@@ -83,6 +114,10 @@ export default function Offerings() {
         : PRODUCTS.filter((p) => p.category === category),
     [category],
   );
+
+  function pick(cat: ProductCategory) {
+    setSearchParams(cat === "All" ? {} : { category: slug(cat) });
+  }
 
   return (
     <section id="offerings" className="section section-offerings" aria-labelledby="offerings-title">
@@ -105,7 +140,7 @@ export default function Offerings() {
               type="button"
               className={`filter-chip${category === cat ? " is-active" : ""}`}
               aria-pressed={category === cat}
-              onClick={() => setCategory(cat)}
+              onClick={() => pick(cat)}
             >
               {cat}
             </button>
