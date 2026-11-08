@@ -18,6 +18,11 @@ export const WHATSAPP_NUMBER = "254115375306";
    email UI is hidden and the form falls back to WhatsApp. */
 export const CONTACT_EMAIL = "";
 
+/* Placeholder price shown to customers until real prices are set. */
+export function displayPrice(price: string): string {
+  return price === "KES 000" ? "KES ___" : price;
+}
+
 /* Builds a WhatsApp chat link with a pre-filled message. */
 export function buildWhatsAppLink(message: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -38,7 +43,7 @@ export function buildOrderMessage(
   area: string,
 ): string {
   const lines = items.map(
-    (i) => `• ${i.name} (${i.unit}) — ${i.price} × ${i.qty}`,
+    (i) => `• ${i.name} (${i.unit}) — ${displayPrice(i.price)} × ${i.qty}`,
   );
   const msg = [
     `Hello ${SITE.name}, I'd like to order:`,

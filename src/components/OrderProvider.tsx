@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import type { OrderLine, Product } from "../data/site";
+import { displayPrice } from "../data/site";
 
 const STORAGE_KEY = "srf-order-tray";
 
@@ -38,7 +39,7 @@ function load(): OrderLine[] {
         typeof i.name === "string" &&
         typeof i.qty === "number" &&
         i.qty > 0,
-    );
+    ).map((i) => ({ ...i, price: displayPrice(String(i.price ?? "")) }));
   } catch {
     return [];
   }
@@ -71,7 +72,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
           id: product.id,
           name: product.name,
           unit: product.unit,
-          price: product.price,
+          price: displayPrice(product.price),
           qty: 1,
         },
       ];

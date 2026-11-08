@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { Check, Minus, Plus } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import {
+  displayPrice,
   OFFERINGS,
   PRODUCTS,
   PRODUCT_CATEGORIES,
@@ -12,14 +13,15 @@ import { useOrder } from "./OrderProvider";
 import SectionHead from "./SectionHead";
 
 function Price({ price }: { price: string }) {
-  if (price === "KES 000") {
+  const label = displayPrice(price);
+  if (label !== price) {
     return (
       <span className="price price--placeholder" title="Price confirmed on WhatsApp">
-        KES ___
+        {label}
       </span>
     );
   }
-  return <span className="price">{price}</span>;
+  return <span className="price">{label}</span>;
 }
 
 function slug(cat: ProductCategory) {

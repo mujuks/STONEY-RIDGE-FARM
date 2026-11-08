@@ -4,13 +4,10 @@ import {
   buildOrderMessage,
   buildWhatsAppLink,
   CONTACT,
+  displayPrice,
   PRODUCTS,
 } from "../data/site";
 import { useOrder } from "./OrderProvider";
-
-function optionLabel(price: string) {
-  return price === "KES 000" ? "KES ___" : price;
-}
 
 export default function OrderTray() {
   const { items, open, setOpen, add, remove, clear } = useOrder();
@@ -118,7 +115,7 @@ export default function OrderTray() {
                 <option value="">Choose a product…</option>
                 {PRODUCTS.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} · {p.unit} · {optionLabel(p.price)}
+                    {p.name} · {p.unit} · {displayPrice(p.price)}
                   </option>
                 ))}
               </select>
