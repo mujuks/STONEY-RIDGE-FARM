@@ -4,13 +4,19 @@ import {
   buildOrderMessage,
   buildWhatsAppLink,
   CONTACT,
+  PRODUCTS,
 } from "../data/site";
 import { useOrder } from "./OrderProvider";
+
+function optionLabel(price: string) {
+  return price === "KES 000" ? "KES ___" : price;
+}
 
 export default function OrderTray() {
   const { items, open, setOpen, add, remove, clear } = useOrder();
   const [name, setName] = useState("");
   const [area, setArea] = useState("");
+  const [selected, setSelected] = useState("");
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -26,11 +32,15 @@ export default function OrderTray() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, setOpen]);
 
-  function sendOrder() {
-    if (items.length === 0) return;
-    const link = buildWhatsAppLink(buildOrderMessage(items, name, area));
-    window.open(link, "_blank", "noopener,noreferrer");
+  function addSelected() {
+    const product = PRODUCTS.find((p) => p.id === selected);
+    if (product) add(product);
   }
+
+  const waHref =
+    items.length > 0
+      ? buildWhatsAppLink(buildOrderMessage(items, name, area))
+      : undefined;
 
   return (
     <>
@@ -96,10 +106,39 @@ export default function OrderTray() {
         </div>
 
         <div className="tray-body">
+          <div className="tray-add">
+            <label htmlFor="tray-product">Select products</label>
+            <div className="tray-add-row">
+              <select
+                id="tray-product"
+                value={selected}
+                onChange={(e) => setSelected(e.target.value)}
+                tabIndex={open ? 0 : -1}
+              >
+                <option value="">Choose a product…</option>
+                {PRODUCTS.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} · {p.unit} · {optionLabel(p.price)}
+                  </option>
+                ))}
+              </select>
+              <button
+                type="button"
+                className="tray-add-btn"
+                onClick={addSelected}
+                disabled={!selected}
+                tabIndex={open ? 0 : -1}
+              >
+                <Plus size={15} aria-hidden="true" />
+                Add
+              </button>
+            </div>
+          </div>
+
           {items.length === 0 ? (
             <p className="tray-empty">
-              Your tray is empty. Add anything from “What we offer” and it will
-              appear here.
+              Your tray is empty — pick a product above, or add items from
+              “What we offer”, and they will appear here.
             </p>
           ) : (
             <ul className="tray-list">
@@ -154,7 +193,7 @@ export default function OrderTray() {
             autoComplete="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Optional"
+            placeholder="e.g. Jane Wanjiku"
             tabIndex={open ? 0 : -1}
           />
 
@@ -168,16 +207,30 @@ export default function OrderTray() {
             tabIndex={open ? 0 : -1}
           />
 
-          <button
-            type="button"
-            className="btn btn-gold tray-send"
-            onClick={sendOrder}
-            disabled={items.length === 0}
+          <a
+            className="tray-wa"
+            href={buildWhatsAppLink("Hello Stoney Ridge Farm!")}
+            target="_blank"
+            rel="noopener noreferrer"
             tabIndex={open ? 0 : -1}
+          >
+            WhatsApp us: {CONTACT.phone}
+          </a>
+
+          <a
+            className={`btn btn-gold tray-send${items.length === 0 ? " is-disabled" : ""}`}
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-disabled={items.length === 0 ? "true" : undefined}
+            onClick={(e) => {
+              if (items.length === 0) e.preventDefault();
+            }}
+            tabIndex={open && items.length > 0 ? 0 : -1}
           >
             Send order on WhatsApp
             <ArrowUpRight size={16} aria-hidden="true" />
-          </button>
+          </a>
 
           <div className="tray-foot-row">
             <span className="tray-note">Prices confirmed on WhatsApp</span>
