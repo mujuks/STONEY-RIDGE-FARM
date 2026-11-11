@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import { OrderProvider } from "./components/OrderProvider";
 import Home from "./pages/Home";
 import Privacy from "./pages/Privacy";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 /* Section paths: URL path → element id on the Home page. */
@@ -14,7 +15,6 @@ const SECTION_PATHS: Record<string, string> = {
   "/gallery": "gallery",
   "/farm-tours": "farm-tours",
   "/our-values": "our-values",
-  "/contact": "contact",
 };
 
 function usePageEffects() {
@@ -67,7 +67,7 @@ function Shell() {
           <Route path="/gallery" element={<Home />} />
           <Route path="/farm-tours" element={<Home />} />
           <Route path="/our-values" element={<Home />} />
-          <Route path="/contact" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/about" element={<Navigate to="/our-farm" replace />} />
           <Route path="/offerings" element={<Navigate to="/products" replace />} />

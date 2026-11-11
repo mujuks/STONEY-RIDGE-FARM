@@ -60,12 +60,22 @@ export function buildOrderMessage(
 
 export const CONTACT = {
   phone: "+254 115 375 306",
-  location: "Nairobi, Kenya",
+  location: "Embu, Kenya",
   /* TODO: replace with your delivery areas. */
   deliveryArea: "[Add delivery areas]",
   /* TODO: replace with your pickup days and hours. */
   pickupHours: "[Add pickup days and hours]",
   minOrder: "[Add minimum order]",
+} as const;
+
+/* Farm pin on Google Maps — the one place map links come from. */
+export const FARM_LOCATION = {
+  coords: "-0.504838,37.501396",
+  coordsDisplay: "0.5048° S, 37.5014° E",
+  viewUrl: "https://maps.google.com/?q=-0.504838,37.501396",
+  directionsUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=-0.504838%2C37.501396",
+  embedUrl: "https://www.google.com/maps?q=-0.504838,37.501396&z=14&output=embed",
 } as const;
 
 /* ---------- navigation ---------- */
@@ -486,6 +496,27 @@ export const CONTACT_SECTION = {
   title: "Something good starts with a *hello.*",
   text: "Message us on WhatsApp for orders, questions or tour bookings — or send a note below and we will get back to you.",
   whatsappMessage: `Hello ${SITE.name}, I'd like to ask about your products.`,
+} as const;
+
+/* ---------- contact page ---------- */
+
+export const CONTACT_PAGE = {
+  eyebrow: "Get in touch",
+  title: "Find us on the *ridge.*",
+  text: "Orders, questions, tour bookings or just a friendly hello — message us on WhatsApp any time, or follow the map to our gate near Embu.",
+  whatsappMessage: `Hello ${SITE.name}, I'd like to get in touch.`,
+  directionsLabel: "Get directions",
+  mapLabel: "Open in Google Maps",
+  mapTitle: "Stoney Ridge Farm on Google Maps",
+  cards: [
+    { key: "whatsapp", label: "WhatsApp / phone" },
+    { key: "location", label: "Location" },
+    { key: "pickup", label: "Pickup" },
+    { key: "delivery", label: "Delivery" },
+  ],
+  ctaEyebrow: "We are listening",
+  ctaTitle: "Say hello, we would love to *hear* from you.",
+  ctaText: `Chat with us on WhatsApp — orders, availability, pickup times or tour bookings. We usually reply the same day.`,
 } as const;
 
 /* ---------- footer ---------- */
