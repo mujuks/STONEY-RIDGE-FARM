@@ -1,4 +1,4 @@
-import { ArrowUpRight, Clock, MapPin, Navigation, Phone, Truck } from "lucide-react";
+import { ArrowUpRight, MapPin, Navigation, Phone } from "lucide-react";
 import {
   buildWhatsAppLink,
   CONTACT,
@@ -11,8 +11,6 @@ import { accentTitle } from "../components/SectionHead";
 const CARDS = [
   { icon: Phone, label: CONTACT_PAGE.cards[0].label, value: CONTACT.phone, href: `tel:+${WHATSAPP_NUMBER}` },
   { icon: MapPin, label: CONTACT_PAGE.cards[1].label, value: CONTACT.location, href: FARM_LOCATION.viewUrl },
-  { icon: Clock, label: CONTACT_PAGE.cards[2].label, value: CONTACT.pickupHours },
-  { icon: Truck, label: CONTACT_PAGE.cards[3].label, value: CONTACT.deliveryArea },
 ];
 
 export default function Contact() {
@@ -20,6 +18,15 @@ export default function Contact() {
     <article className="page-contact">
       <section id="contact" className="contact-hero" aria-labelledby="contact-page-title">
         <div className="wrap">
+          <img
+            className="contact-crest reveal"
+            src="/images/badge.png"
+            alt=""
+            width={72}
+            height={72}
+            aria-hidden="true"
+            decoding="async"
+          />
           <p className="eyebrow">{CONTACT_PAGE.eyebrow}</p>
           <h1 id="contact-page-title">{accentTitle(CONTACT_PAGE.title)}</h1>
           <p className="contact-hero-lead">{CONTACT_PAGE.text}</p>

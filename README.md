@@ -9,8 +9,8 @@ WhatsApp-first ordering flow, farm tours, gallery and contact form.
 
 - [Vite](https://vite.dev) + React 19 + TypeScript
 - [react-router-dom](https://reactrouter.com) (path routes: `/`, `/our-farm`,
-  `/products`, `/gallery`, `/farm-tours`, `/our-values`, `/contact`,
-  `/privacy`, 404)
+  `/products`, `/herbs`, `/gallery`, `/farm-tours`, `/our-values`,
+  `/contact`, `/privacy`, 404)
 - Plain CSS with design tokens — see [`BRAND.md`](./BRAND.md)
 - [lucide-react](https://lucide.dev) icons only
 
@@ -39,7 +39,8 @@ All copy, prices, links and data live in **`src/data/site.ts`**:
 - `WHATSAPP_NUMBER` — international format, no `+` (currently `254115375306`)
 - `CONTACT.email` via `CONTACT_EMAIL` — enables the email form (falls back
   to WhatsApp when empty)
-- `PRODUCTS` — the nine offerings, categories and `price` fields
+- `PRODUCTS` — the sixteen offerings, categories and `price` fields
+- `HERBS_SECTION` — the twelve herbs, notes and section copy
 - `HARVEST_BOARD.rows`, `FARM_TOURS`, `FAQ.items`, `VALUES`, `GALLERY`
 - `TESTIMONIALS` — section stays hidden while the array is empty; never
   invent quotes
@@ -53,8 +54,10 @@ Optional env (`.env.local`):
 
 - [x] WhatsApp number in `src/data/site.ts` → `WHATSAPP_NUMBER` (`254115375306`)
 - [ ] Real email → `CONTACT_EMAIL` (or set `VITE_CONTACT_ENDPOINT`)
-- [ ] Real prices for all nine products (`KES 000` → actual)
-- [ ] Delivery areas, pickup hours, minimum order, tour price/duration
+- [ ] Real prices for all sixteen products (`KES 000` → actual)
+- [ ] Detailed herb catalogue → `HERBS_SECTION.items`
+- [ ] Real tour price and duration → `FARM_TOURS.price` / `FARM_TOURS.duration`
+  (shows "On request" / "By arrangement" until set)
 - [ ] Gallery / product photos if you want to swap the current set
 - [ ] About text in `OUR_FARM` if you want to rewrite the story
 - [ ] Real customer quotes → `TESTIMONIALS` (optional)

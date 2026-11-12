@@ -200,7 +200,7 @@ export default function OrderTray() {
             type="text"
             value={area}
             onChange={(e) => setArea(e.target.value)}
-            placeholder={CONTACT.deliveryArea}
+            placeholder="e.g. Embu town"
             tabIndex={open ? 0 : -1}
           />
 

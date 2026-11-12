@@ -61,11 +61,6 @@ export function buildOrderMessage(
 export const CONTACT = {
   phone: "+254 115 375 306",
   location: "Embu, Kenya",
-  /* TODO: replace with your delivery areas. */
-  deliveryArea: "[Add delivery areas]",
-  /* TODO: replace with your pickup days and hours. */
-  pickupHours: "[Add pickup days and hours]",
-  minOrder: "[Add minimum order]",
 } as const;
 
 /* Farm pin on Google Maps — the one place map links come from. */
@@ -90,6 +85,7 @@ export const NAV_LINKS: NavLink[] = [
   { id: "home", path: "/", label: "Home" },
   { id: "our-farm", path: "/our-farm", label: "Our farm" },
   { id: "offerings", path: "/products", label: "What we offer" },
+  { id: "herbs", path: "/herbs", label: "Herbs" },
   { id: "gallery", path: "/gallery", label: "Gallery" },
   { id: "farm-tours", path: "/farm-tours", label: "Farm tours" },
   { id: "our-values", path: "/our-values", label: "Our values" },
@@ -99,16 +95,18 @@ export const NAV_LINKS: NavLink[] = [
 /* ---------- hero ---------- */
 
 export const HERO = {
-  image: "/images/hero.jpg",
-  imageAlt: "Two farmers holding a crate of fresh vegetables at the farm",
+  image: "/images/hero-orchard.jpg",
+  imageAlt:
+    "Sunlit fruit orchard heavy with apples, oranges and mangoes while honey bees work the blossoms beside a wooden hive",
   eyebrow: "Rooted in nature · Established 2026",
   titleLine1: "Good things",
   titleLine2: "grow",
   titleAccent: "here.",
-  text: "Eggs, honey, orchard fruit, vegetables and fresh fish — grown with care and brought straight from our ridge to your table.",
+  text: "A fruit orchard humming with bees, beds of fresh herbs, eggs, honey, vegetables and fish — grown with care and brought straight from our ridge to your table.",
   stats: [
     { value: 2026, prefix: "", suffix: "", label: "Established" },
-    { value: 9, prefix: "", suffix: "", label: "Farm offerings" },
+    /* keep in sync with PRODUCTS.length below */
+    { value: 16, prefix: "", suffix: "", label: "Farm offerings" },
     { value: 1, prefix: "", suffix: "", label: "Farm tours weekly" },
   ],
 } as const;
@@ -119,8 +117,15 @@ export const MARQUEE_ITEMS = [
   "Free-range farm eggs",
   "Raw honey",
   "Orchard fruit",
+  "Pomegranates",
+  "Pawpaw",
+  "Fresh herbs",
   "Fresh vegetables",
   "Fresh fish",
+  "Fresh fruit juices",
+  "Quail chicks",
+  "Christmas goats",
+  "Azolla fish feed",
   "Weekly harvest box",
   "Farm tours",
   "From farm to table",
@@ -130,8 +135,8 @@ export const MARQUEE_ITEMS = [
 
 export const OUR_FARM = {
   eyebrow: "Our farm",
-  title: "Bees, birds and *bush* — a ridge full of life.",
-  text: "Bees and honey lead the story of our farm — oranges and avocados, eggs and fish follow, alongside the mountain homestead that inspires our name. Each harvest represents our appreciation for the many gifts that find their way to a family table. As our farm grows, we look forward to sharing more of that goodness with you.",
+  title: "Fruit trees, hives and *herbs* — a ridge full of life.",
+  text: "Rows of fruit trees — oranges, avocados, pomegranates and pawpaw — stand across the ridge, with honey bees working every blossom from first flower to last fruit. Between them grow our herb beds: mint, lemongrass, rosemary, lavender, chamomile and more. Quail chicks, Christmas goats, azolla and our fish ponds complete the farm, so one corner supports the next. It is as much a home for biodiversity as it is a source of food.",
   image: "/grow.jpeg",
   imageAlt: "Watering young seedlings growing in dark soil",
   secondaryImage: "/farmstory.jpeg",
@@ -143,19 +148,25 @@ export const OUR_FARM = {
 
 export type ProductCategory =
   | "All"
-  | "Eggs and dairy"
-  | "Produce"
   | "Orchard"
+  | "Herbs"
+  | "Produce"
+  | "Eggs and dairy"
   | "Honey"
-  | "Fish";
+  | "Fish"
+  | "Livestock and feed"
+  | "Fresh juices";
 
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
   "All",
-  "Eggs and dairy",
-  "Produce",
   "Orchard",
+  "Herbs",
+  "Produce",
+  "Eggs and dairy",
   "Honey",
   "Fish",
+  "Livestock and feed",
+  "Fresh juices",
 ];
 
 export interface Product {
@@ -243,6 +254,71 @@ export const PRODUCTS: Product[] = [
     alt: "Fisherman holding the day's fresh catch",
   },
   {
+    id: "pomegranates",
+    name: "Pomegranates",
+    unit: "Per kilo",
+    category: "Orchard",
+    /* TODO: replace KES 000 with your real prices. */
+    price: "KES 000",
+    img: "/products/Pomegranates.jpeg",
+    alt: "Ripe pomegranates clustered on the tree, one split open to show its seeds",
+  },
+  {
+    id: "pawpaw",
+    name: "Pawpaw",
+    unit: "Per kilo",
+    category: "Orchard",
+    price: "KES 000",
+    img: "/products/Pawpaw.jpeg",
+    alt: "Ripe pawpaw on a wooden table, one half showing orange flesh and black seeds",
+  },
+  {
+    /* TODO: replace with the individual herbs once the catalog arrives. */
+    id: "fresh-herbs",
+    name: "Fresh herbs",
+    unit: "Mixed bunches",
+    category: "Herbs",
+    price: "KES 000",
+    img: "/products/herbs.jpg",
+    alt: "Fresh mint, rosemary and basil growing in the herb bed",
+  },
+  {
+    id: "quail-chicks",
+    name: "Quail chicks",
+    unit: "Per chick",
+    category: "Livestock and feed",
+    price: "KES 000",
+    img: "/products/Quail chicks.jpeg",
+    alt: "A mother quail with her flock of young chicks on a bed of straw",
+  },
+  {
+    id: "christmas-goats",
+    name: "Christmas goats",
+    unit: "Per goat",
+    category: "Livestock and feed",
+    price: "KES 000",
+    img: "/products/Christmas goats.jpeg",
+    alt: "A brown and black farm goat standing on green grass",
+  },
+  {
+    id: "azolla",
+    name: "Azolla",
+    unit: "Per sack",
+    category: "Livestock and feed",
+    price: "KES 000",
+    img: "/products/Azolla.jpeg",
+    alt: "Dense bright green azolla fronds covering the surface of the water",
+  },
+  {
+    id: "fruit-juices",
+    name: "Fresh fruit juices",
+    unit: "Per bottle",
+    category: "Fresh juices",
+    price: "KES 000",
+    img: "/products/Fresh fruit juices.jpeg",
+    alt: "Three glasses of freshly pressed fruit juice surrounded by fresh fruit",
+  },
+  {
     id: "harvest-box",
     name: "Weekly harvest box",
     unit: "Box of the week",
@@ -255,9 +331,43 @@ export const PRODUCTS: Product[] = [
 
 export const OFFERINGS = {
   eyebrow: "What we offer",
-  title: "Nine good things, grown *here.*",
+  /* "Sixteen" must match PRODUCTS.length above. */
+  title: "Sixteen good things, grown *here.*",
   text: "Add what you like to the order tray and send it straight to us on WhatsApp. Availability changes with the season — we will confirm what is ready.",
   note: "Availability may vary by season. Prices are confirmed when you order.",
+} as const;
+
+/* ---------- herbs and herbal products ---------- */
+
+export interface Herb {
+  name: string;
+  note: string;
+}
+
+export const HERBS_SECTION = {
+  eyebrow: "Herbs and herbal products",
+  title: "Twelve herbs, grown for *tea* and cooking.",
+  text: "Our herb beds run from chives and parsley through to rosemary, lavender and lemongrass — cut fresh for the kitchen, the teapot and our herbal products. This is a first look: full descriptions, packaging and prices will follow with the herb catalogue.",
+  note: "A detailed herb catalogue with descriptions and prices is coming soon. Message us for what is ready today.",
+  image: "/products/herbs.jpg",
+  imageAlt: "Bunches of fresh green herbs growing thickly in the farm herb bed",
+  ctaLabel: "Ask about herbs",
+  whatsappMessage: `Hello ${SITE.name}, I'd like to ask about your herbs and herbal products.`,
+  /* TODO: expand each entry once the detailed catalogue arrives. */
+  items: [
+    { name: "Chives", note: "Mild onion flavour for eggs, salads and soups." },
+    { name: "Lemon balm", note: "Citrus-scented leaves for a fresh herbal infusion." },
+    { name: "Mint", note: "Cool, bright leaves for tea, juice and cooking." },
+    { name: "Lemongrass", note: "Fresh stalks with a clean lemon scent, prized for tea." },
+    { name: "Rosemary", note: "Woody, aromatic sprigs for roasts and fresh breads." },
+    { name: "Aloe vera", note: "Thick, cooling leaves, cut fresh from the bed." },
+    { name: "Parsley", note: "Green bunches for garnishes, salads and sauces." },
+    { name: "Lavender", note: "Fragrant flower spikes for teas, syrups and baking." },
+    { name: "Chamomile", note: "Golden flowers gathered for a gentle evening tea." },
+    { name: "Wormwood", note: "Aromatic bitter leaves with a long herbal tradition." },
+    { name: "Bay leaves (dried)", note: "Slow-dried leaves that deepen stews and sauces." },
+    { name: "Hibiscus tea leaves", note: "Ruby-red petals for a tart, refreshing tea, hot or cold." },
+  ] as Herb[],
 } as const;
 
 /* ---------- harvest board ---------- */
@@ -268,10 +378,10 @@ export const HARVEST_BOARD = {
   text: "What is ready right now. Message us early — the good stuff goes quickly.",
   rows: [
     { day: "Monday", items: "Farm eggs · Fresh vegetables", status: "Fresh" },
-    { day: "Tuesday", items: "Honey · Orchard fruit", status: "Fresh" },
-    { day: "Wednesday", items: "Fresh fish · Strawberries", status: "Fresh" },
-    { day: "Thursday", items: "Farm eggs · Avocados", status: "Fresh" },
-    { day: "Friday", items: "Weekly harvest box · Honey", status: "Selling fast" },
+    { day: "Tuesday", items: "Honey · Pomegranates", status: "Fresh" },
+    { day: "Wednesday", items: "Fresh fish · Fresh herbs", status: "Fresh" },
+    { day: "Thursday", items: "Farm eggs · Pawpaw", status: "Fresh" },
+    { day: "Friday", items: "Weekly harvest box · Fresh fruit juices", status: "Selling fast" },
     { day: "Saturday", items: "Market morning pickup", status: "Pickup day" },
   ],
 } as const;
@@ -283,20 +393,16 @@ export interface GalleryItem {
   alt: string;
   title: string;
   caption: string;
+  size?: "feature" | "wide";
 }
 
 export const GALLERY: GalleryItem[] = [
   {
-    src: "/farmstory.jpeg",
-    alt: "Farm workers celebrating together in the fields",
-    title: "Harvest joy",
-    caption: "Rooted in the land",
-  },
-  {
-    src: "/moonlight.jpeg",
-    alt: "Full moon rising over calm water with a moored boat",
-    title: "Evening calm",
-    caption: "Beauty of the countryside",
+    src: "/images/hero-orchard.jpg",
+    alt: "Sunlit orchard rows of apples, oranges and mangoes with honey bees at work",
+    title: "The orchard",
+    caption: "Fruit trees in full season",
+    size: "feature",
   },
   {
     src: "/products/oranges.jpg",
@@ -305,28 +411,23 @@ export const GALLERY: GalleryItem[] = [
     caption: "From the orchard",
   },
   {
-    src: "/products/avocado.jpeg",
-    alt: "Fresh avocados, whole and halved",
-    title: "Avocados",
-    caption: "From the grove",
-  },
-  {
     src: "/products/honey-bees.jpeg",
     alt: "Golden honey with bees and honeycomb",
     title: "Honey & bees",
     caption: "From the apiary",
   },
   {
-    src: "/products/farm-eggs.jpeg",
-    alt: "Free-range hen at the farm",
-    title: "Farm eggs",
-    caption: "From the farmhouse",
+    src: "/products/avocado.jpeg",
+    alt: "Fresh avocados, whole and halved",
+    title: "Avocados",
+    caption: "From the grove",
   },
   {
-    src: "/products/fish.jpeg",
-    alt: "Fisherman holding the day's fresh catch",
-    title: "Fresh fish",
-    caption: "From the water",
+    src: "/products/vegetables.jpg",
+    alt: "Freshly harvested garden vegetables",
+    title: "Fresh vegetables",
+    caption: "From the garden",
+    size: "wide",
   },
   {
     src: "/products/passion-fruit.jpeg",
@@ -341,10 +442,29 @@ export const GALLERY: GalleryItem[] = [
     caption: "From the berry patch",
   },
   {
-    src: "/products/vegetables.jpg",
-    alt: "Freshly harvested garden vegetables",
-    title: "Fresh vegetables",
-    caption: "From the garden",
+    src: "/products/farm-eggs.jpeg",
+    alt: "Free-range hen at the farm",
+    title: "Farm eggs",
+    caption: "From the farmhouse",
+  },
+  {
+    src: "/products/Quail chicks.jpeg",
+    alt: "A mother quail with her flock of young chicks on a bed of straw",
+    title: "Quail chicks",
+    caption: "From the rearing shed",
+    size: "feature",
+  },
+  {
+    src: "/products/Christmas goats.jpeg",
+    alt: "A brown and black farm goat standing on green grass",
+    title: "Christmas goats",
+    caption: "From the paddock",
+  },
+  {
+    src: "/products/Azolla.jpeg",
+    alt: "Dense bright green azolla fronds covering the surface of the water",
+    title: "Azolla",
+    caption: "From the ponds",
   },
   {
     src: "/bees.jpeg",
@@ -353,10 +473,55 @@ export const GALLERY: GalleryItem[] = [
     caption: "Where the story starts",
   },
   {
+    src: "/products/fish.jpeg",
+    alt: "Fisherman holding the day's fresh catch",
+    title: "Fresh fish",
+    caption: "From the water",
+  },
+  {
+    src: "/moonlight.jpeg",
+    alt: "Full moon rising over calm water with a moored boat",
+    title: "Evening calm",
+    caption: "Beauty of the countryside",
+    size: "wide",
+  },
+  {
+    src: "/farmstory.jpeg",
+    alt: "Farm workers celebrating together in the fields",
+    title: "Harvest joy",
+    caption: "Rooted in the land",
+  },
+  {
     src: "/Poultry Egg Handling.jpeg",
     alt: "Careful handling of fresh farm eggs",
     title: "Egg handling",
     caption: "Care in every detail",
+    size: "wide",
+  },
+  {
+    src: "/products/pomegranates.jpg",
+    alt: "Pomegranates ripening on the tree",
+    title: "Pomegranates",
+    caption: "From the orchard",
+  },
+  {
+    src: "/products/Fresh fruit juices.jpeg",
+    alt: "Three glasses of freshly pressed fruit juice surrounded by fresh fruit",
+    title: "Fresh juices",
+    caption: "Pressed on the farm",
+    size: "feature",
+  },
+  {
+    src: "/products/Pawpaw.jpeg",
+    alt: "Ripe pawpaw on a wooden table, one half showing orange flesh and black seeds",
+    title: "Pawpaw",
+    caption: "From the orchard",
+  },
+  {
+    src: "/products/Pomegranates.jpeg",
+    alt: "Ripe pomegranates clustered on the tree, one split open to show its seeds",
+    title: "Ripe pomegranates",
+    caption: "From the orchard",
   },
 ];
 
@@ -371,14 +536,14 @@ export const GALLERY_SECTION = {
 export const FARM_TOURS = {
   eyebrow: "Farm tours",
   title: "Walk the ridge, taste the *harvest.*",
-  text: "Spend a morning with us: see the hives, meet the hens, wander the orchard and taste what is in season. Small groups, real farm life.",
+  text: "Spend a morning with us: wander the orchard rows, see the hives and the herb beds, meet the hens and quail and taste whatever is in season. Small groups, real farm life.",
   image: "/farmer.jpeg",
   imageAlt: "A farmer at work on the land",
   /* TODO: replace with your real tour price and duration. */
-  price: "[Add tour price]",
-  duration: "[Add tour duration]",
+  price: "On request",
+  duration: "By arrangement",
   includes: [
-    "Guided walk through the hives, hen houses and orchard",
+    "Guided walk through the orchard, herb beds, hives and fish ponds",
     "Seasonal tasting of what is ready to pick",
     "Time for questions with the people who work the land",
   ],
@@ -472,15 +637,23 @@ export const FAQ = {
     },
     {
       q: "Do you deliver?",
-      a: "We deliver to [Add delivery areas] and offer farm pickup on [Add pickup days and hours]. Delivery details are confirmed when you order.",
+      a: "Message us on WhatsApp with your location and we will confirm delivery or farm pickup for your order.",
     },
     {
       q: "Are prices fixed?",
-      a: "Prices shown are guidance — [Add minimum order] minimum order applies. Final prices are confirmed on WhatsApp because harvest availability changes with the season.",
+      a: "Prices shown are guidance. Final prices are confirmed on WhatsApp because harvest availability changes with the season.",
     },
     {
       q: "Can I visit the farm?",
       a: "Yes! We run farm tours — see the farm tours section above and message us on WhatsApp to book a slot.",
+    },
+    {
+      q: "Which herbs do you grow?",
+      a: "Chives, lemon balm, mint, lemongrass, rosemary, aloe vera, parsley, lavender, chamomile, wormwood, dried bay leaves and hibiscus tea leaves. A full catalogue with descriptions and prices is on the way — message us for what is cut fresh today.",
+    },
+    {
+      q: "Do you have quail, goats and azolla?",
+      a: "Yes — young quail chicks, Christmas goats, and azolla as supplementary feed for fish and chickens. Availability is confirmed on WhatsApp.",
     },
     {
       q: "What if something is out of stock?",
@@ -495,6 +668,7 @@ export const CONTACT_SECTION = {
   eyebrow: "Get in touch",
   title: "Something good starts with a *hello.*",
   text: "Message us on WhatsApp for orders, questions or tour bookings — or send a note below and we will get back to you.",
+  textWhatsAppOnly: "Message us on WhatsApp for orders, questions or tour bookings — we usually reply the same day.",
   whatsappMessage: `Hello ${SITE.name}, I'd like to ask about your products.`,
 } as const;
 
@@ -511,24 +685,21 @@ export const CONTACT_PAGE = {
   cards: [
     { key: "whatsapp", label: "WhatsApp / phone" },
     { key: "location", label: "Location" },
-    { key: "pickup", label: "Pickup" },
-    { key: "delivery", label: "Delivery" },
   ],
   ctaEyebrow: "We are listening",
   ctaTitle: "Say hello, we would love to *hear* from you.",
-  ctaText: `Chat with us on WhatsApp — orders, availability, pickup times or tour bookings. We usually reply the same day.`,
+  ctaText: `Chat with us on WhatsApp — orders, availability or tour bookings. We usually reply the same day.`,
 } as const;
 
 /* ---------- footer ---------- */
 
 export const FOOTER = {
-  blurb: "Fresh produce, farm eggs, honey and fish — grown with care on the ridge and brought from farm to table.",
+  blurb:
+    "Orchard fruit, pomegranates, fresh herbs, farm eggs, honey, quail, goats and fish — grown with care on the ridge and brought from farm to table.",
   quickLinksLabel: "Explore",
   contactLabel: "Contact",
   legalLabel: "Legal",
   legalLinks: [
     { to: "/privacy", label: "Privacy policy" },
   ] as { to: string; label: string }[],
-  /* TODO: add your social links (set href to "#" to hide). */
-  socials: [] as { label: string; href: string }[],
 } as const;

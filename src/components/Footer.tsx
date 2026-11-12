@@ -18,7 +18,7 @@ export default function Footer() {
 
       <div className="wrap footer-grid">
         <div className="footer-brand">
-          <Logo variant="light" size={44} />
+          <Logo variant="light" size={56} />
           <p>{FOOTER.blurb}</p>
           <a
             className="btn btn-gold"
@@ -44,8 +44,6 @@ export default function Footer() {
           <h2>{FOOTER.contactLabel}</h2>
           <span>{CONTACT.phone}</span>
           <span>{CONTACT.location}</span>
-          <span>{CONTACT.deliveryArea}</span>
-          <span>{CONTACT.pickupHours}</span>
         </div>
 
         <div className="footer-col">
@@ -54,11 +52,6 @@ export default function Footer() {
             <Link key={link.to} to={link.to}>
               {link.label}
             </Link>
-          ))}
-          {FOOTER.socials.map((social) => (
-            <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer">
-              {social.label}
-            </a>
           ))}
         </div>
       </div>

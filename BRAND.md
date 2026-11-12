@@ -24,10 +24,10 @@ copy elsewhere.
 | `--soft-green` | `#3b5030` | contact section |
 | `--sage` | `#c9d6b8` | text on dark |
 | `--sage-100` | `#e6eddc` | harvest section bg |
-| `--cream` | `#fbf8f0` | page bg, sticky header |
-| `--cream-2` | `#f6f0e2` | alternating section bg |
-| `--sand` | `#e8dfc6` | marquee + how-it-works bg |
-| `--border` | `#d9d0b8` | 1px borders |
+| `--cream` | `#f9f4e5` | page bg, sticky header |
+| `--cream-2` | `#f4ecd8` | alternating section bg |
+| `--sand` | `#ebdfc0` | marquee + how-it-works bg |
+| `--border` | `#dcd2b6` | 1px borders |
 | `--ink-600` | `#5b6650` | secondary text |
 | `--gold-bright` | `#d8a95b` | gold text **on dark** (6.05:1 on forest) |
 | `--honey-500` | `#c9962b` | gold buttons (with `--forest-800` text, 4.84:1) |
@@ -55,26 +55,33 @@ Never hardcode hex in components — always use the tokens.
 - Pills (`999px`) for buttons, chips, badges; cards 16–20px radius.
 - One shadow token: `0 1px 2px rgba(38,53,30,.08)` — sticky header + card
   hover only.
-- Section background rhythm: hero (photo) → sand marquee → cream → cream-2 →
-  sage-100 → cream → **forest** (tours) → cream-2 → sand → cream →
-  **soft-green** (contact) → **deep-forest** (footer).
+- Section background rhythm: hero (orchard photo) → sand marquee → cream →
+  cream-2 → cream (herbs) → sage-100 → cream → **forest** (tours) → cream-2 →
+  sand → cream → **soft-green** (contact) → **deep-forest** (footer).
 
 ## Components
 
 - **Header** — sticky cream, scroll-spy nav (gold active state), gold scroll
   progress hairline, mobile drawer (Escape closes), CTA pill ≥1200px.
-- **Hero** — full-bleed photo, forest gradient scrim (94%→12% left→right),
-  ken-burns 20s (off for reduced motion), gold stats count-up, ridge
-  divider into the marquee.
+- **Hero** — full-bleed orchard photo, forest gradient scrim (94%→12%
+  left→right), ken-burns 20s (off for reduced motion), gold stats count-up,
+  ridge divider into the marquee. No logo here — the badge lives in the
+  header (and the contact crest), so the hero never repeats it.
+- **Herbs** (`#herbs`) — twelve named herbs with one-line notes from
+  `HERBS_SECTION.items`; sticky herb photo ≥960px, WhatsApp CTA + shop link.
+  Expand entries only when the detailed herb catalogue arrives.
 - **Order tray** — context + localStorage (`srf-order-tray`); sticky bar on
   mobile, floating pill + panel ≥1024px; builds the WhatsApp message via
   `buildOrderMessage()`. FAB hides while the tray is open.
-- **Gallery** — grid + lightbox (Esc, arrows, focus on close).
+- **Gallery** — editorial mosaic (feature 2×2 + wide 2×1 tiles, overlay
+  captions) + lightbox (Esc, arrows, focus on close).
 - **Contact** — WhatsApp-first; email form renders only when
   `CONTACT_EMAIL` or `VITE_CONTACT_ENDPOINT` is set (mailto fallback,
   honeypot, inline validation).
 - **Testimonials** — renders nothing while `TESTIMONIALS` is empty. Never
   invent quotes.
+- **Footer** — logo, blurb, nav, contact, legal only. No social links until
+  they are agreed and added to `FOOTER`.
 
 ## Accessibility
 
@@ -92,7 +99,9 @@ marquee, reveal, count-up and hover zooms.
 
 ## Assets
 
-- Hero: `public/images/hero.jpg`
+- Hero: `public/images/hero-orchard.jpg` (fruit orchard, bees and beehive)
 - Badge: `public/images/badge.png` (favicon/apple-touch/OG derive from it)
+  — also rendered as the contact-page crest.
 - OG image: `public/og-image.png` (regenerate: `scripts/make-og.ps1`)
 - Product + gallery photos: `public/products/*`, `public/*.jpeg`
+- Every product card uses a real photo (no SVG placeholders remain).

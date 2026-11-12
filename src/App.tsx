@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 const SECTION_PATHS: Record<string, string> = {
   "/our-farm": "our-farm",
   "/products": "offerings",
+  "/herbs": "herbs",
   "/gallery": "gallery",
   "/farm-tours": "farm-tours",
   "/our-values": "our-values",
@@ -64,6 +65,7 @@ function Shell() {
           <Route path="/" element={<Home />} />
           <Route path="/our-farm" element={<Home />} />
           <Route path="/products" element={<Home />} />
+          <Route path="/herbs" element={<Home />} />
           <Route path="/gallery" element={<Home />} />
           <Route path="/farm-tours" element={<Home />} />
           <Route path="/our-values" element={<Home />} />

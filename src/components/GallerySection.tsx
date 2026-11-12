@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Maximize2 } from "lucide-react";
 import { GALLERY, GALLERY_SECTION } from "../data/site";
 import Lightbox from "./Lightbox";
 import SectionHead from "./SectionHead";
@@ -22,14 +23,17 @@ export default function GallerySection() {
             <button
               key={item.src + i}
               type="button"
-              className={`gallery-card reveal${i % 5 === 0 ? " gallery-card--tall" : ""}`}
+              className={`gallery-card reveal${item.size ? ` gallery-card--${item.size}` : ""}`}
               onClick={() => setIndex(i)}
               aria-label={`Open image: ${item.title}`}
             >
               <img src={item.src} alt={item.alt} width={640} height={480} loading="lazy" />
+              <span className="gallery-zoom" aria-hidden="true">
+                <Maximize2 size={14} />
+              </span>
               <span className="gallery-caption">
-                <strong>{item.title}</strong>
                 <small>{item.caption}</small>
+                <strong>{item.title}</strong>
               </span>
             </button>
           ))}

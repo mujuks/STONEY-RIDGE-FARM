@@ -3,7 +3,7 @@ Add-Type -AssemblyName System.Drawing
 $forest = [System.Drawing.Color]::FromArgb(255, 38, 53, 30)
 $deepForest = [System.Drawing.Color]::FromArgb(255, 27, 39, 21)
 $goldBright = [System.Drawing.Color]::FromArgb(255, 216, 169, 91)
-$cream = [System.Drawing.Color]::FromArgb(255, 251, 248, 240)
+$cream = [System.Drawing.Color]::FromArgb(255, 249, 244, 229)
 $sage = [System.Drawing.Color]::FromArgb(255, 201, 214, 184)
 $softGreen = [System.Drawing.Color]::FromArgb(255, 59, 80, 48)
 
@@ -78,7 +78,7 @@ $g.DrawString("ROOTED IN NATURE $dot ESTABLISHED 2026", $eyebrow, $goldBrush, 80
 $g.DrawString("Stoney Ridge", $serif, $creamBrush, 76, 155, $format)
 $g.DrawString("Farm", $serif, $creamBrush, 76, 235, $format)
 $g.DrawString("From farm to table", $serifItalic, $goldBrush, 80, 345, $format)
-$g.DrawString("Fresh produce $dot Farm eggs $dot Honey $dot Fish", $sans, $sageBrush, 80, 415, $format)
+$g.DrawString("Fruit orchard $dot Fresh herbs $dot Farm eggs $dot Honey $dot Fish", $sans, $sageBrush, 80, 415, $format)
 
 $serif.Dispose(); $serifItalic.Dispose(); $sans.Dispose(); $eyebrow.Dispose()
 $creamBrush.Dispose(); $goldBrush.Dispose(); $sageBrush.Dispose(); $format.Dispose()

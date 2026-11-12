@@ -2,6 +2,7 @@ import ContactSection from "../components/ContactSection";
 import FaqSection from "../components/FaqSection";
 import GallerySection from "../components/GallerySection";
 import HarvestBoard from "../components/HarvestBoard";
+import HerbsSection from "../components/HerbsSection";
 import Hero from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
 import Offerings from "../components/Offerings";
@@ -20,6 +21,7 @@ export default function Home() {
       <WelcomeStrip />
       <OurFarm />
       <Offerings />
+      <HerbsSection />
       <HarvestBoard />
       <GallerySection />
       <ToursSection />

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { ArrowUpRight, Mail, MapPin, Phone, Clock } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { buildWhatsAppLink, CONTACT, CONTACT_EMAIL, CONTACT_SECTION } from "../data/site";
 import SectionHead from "./SectionHead";
 
@@ -64,7 +64,7 @@ export default function ContactSection() {
             tone="dark"
             eyebrow={CONTACT_SECTION.eyebrow}
             title={CONTACT_SECTION.title}
-            text={CONTACT_SECTION.text}
+            text={canEmail ? CONTACT_SECTION.text : CONTACT_SECTION.textWhatsAppOnly}
           />
 
           <div className="contact-actions reveal">
@@ -91,18 +91,6 @@ export default function ContactSection() {
                 <MapPin size={15} aria-hidden="true" /> Location
               </dt>
               <dd>{CONTACT.location}</dd>
-            </div>
-            <div>
-              <dt>
-                <Clock size={15} aria-hidden="true" /> Pickup
-              </dt>
-              <dd>{CONTACT.pickupHours}</dd>
-            </div>
-            <div>
-              <dt>
-                <MapPin size={15} aria-hidden="true" /> Delivery
-              </dt>
-              <dd>{CONTACT.deliveryArea}</dd>
             </div>
           </dl>
         </div>
