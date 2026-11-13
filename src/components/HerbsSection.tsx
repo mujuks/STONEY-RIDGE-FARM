@@ -1,22 +1,23 @@
 import { ArrowUpRight, Leaf } from "lucide-react";
-import { Link } from "react-router-dom";
 import { buildWhatsAppLink, HERBS_SECTION } from "../data/site";
 import SectionHead from "./SectionHead";
 
-export default function HerbsSection() {
+export default function HerbsSection({ headless = false }: { headless?: boolean }) {
   return (
     <section
       id="herbs"
       className="section section-herbs grain"
-      aria-labelledby="herbs-title"
+      aria-labelledby={headless ? undefined : "herbs-title"}
     >
       <div className="wrap">
-        <SectionHead
-          id="herbs-title"
-          eyebrow={HERBS_SECTION.eyebrow}
-          title={HERBS_SECTION.title}
-          text={HERBS_SECTION.text}
-        />
+        {!headless && (
+          <SectionHead
+            id="herbs-title"
+            eyebrow={HERBS_SECTION.eyebrow}
+            title={HERBS_SECTION.title}
+            text={HERBS_SECTION.text}
+          />
+        )}
 
         <div className="herbs-layout">
           <figure className="herbs-media reveal">
@@ -57,9 +58,15 @@ export default function HerbsSection() {
               {HERBS_SECTION.ctaLabel}
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
-            <Link className="btn btn-outline" to="/products?category=herbs">
-              Shop herbs
-            </Link>
+            <a
+              className="btn btn-outline"
+              href={buildWhatsAppLink(HERBS_SECTION.shopWhatsappMessage)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {HERBS_SECTION.shopLabel}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
           </div>
         </div>
       </div>

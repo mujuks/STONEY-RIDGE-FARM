@@ -2,22 +2,24 @@ import { ArrowUpRight, Check } from "lucide-react";
 import { buildWhatsAppLink, FARM_TOURS, SITE } from "../data/site";
 import SectionHead from "./SectionHead";
 
-export default function ToursSection() {
+export default function ToursSection({ headless = false }: { headless?: boolean }) {
   return (
     <section
       id="farm-tours"
       className="section section-tours"
-      aria-labelledby="tours-title"
+      aria-labelledby={headless ? undefined : "tours-title"}
     >
-      <div className="wrap tours-grid">
+      <div className={`wrap tours-grid${headless ? " tours-grid--headless" : ""}`}>
         <div className="tours-copy">
-          <SectionHead
-            id="tours-title"
-            tone="dark"
-            eyebrow={FARM_TOURS.eyebrow}
-            title={FARM_TOURS.title}
-            text={FARM_TOURS.text}
-          />
+          {!headless && (
+            <SectionHead
+              id="tours-title"
+              tone="dark"
+              eyebrow={FARM_TOURS.eyebrow}
+              title={FARM_TOURS.title}
+              text={FARM_TOURS.text}
+            />
+          )}
 
           <ul className="tours-list reveal">
             {FARM_TOURS.includes.map((line) => (

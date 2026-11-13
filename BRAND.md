@@ -61,15 +61,24 @@ Never hardcode hex in components — always use the tokens.
 
 ## Components
 
-- **Header** — sticky cream, scroll-spy nav (gold active state), gold scroll
-  progress hairline, mobile drawer (Escape closes), CTA pill ≥1200px.
+- **Top bar** — slim `--deep-forest` strip above the header: `tel:` number,
+  WhatsApp link, opening hours, location (hours/location hide <600px).
+  Scrolls away; the header below stays sticky.
+- **Header** — sticky cream, active state from the current route (gold),
+  gold scroll progress hairline, mobile drawer (Escape closes), CTA pill ≥1200px.
+  Every nav item is its own route — nothing scroll-jumps within a page.
 - **Hero** — full-bleed orchard photo, forest gradient scrim (94%→12%
   left→right), ken-burns 20s (off for reduced motion), gold stats count-up,
   ridge divider into the marquee. No logo here — the badge lives in the
   header (and the contact crest), so the hero never repeats it.
+- **Page hero** (`src/components/PageHero.tsx`) — opens every inner page with
+  `Breadcrumbs` (Home / current), eyebrow, one h1 (accent word) and a lead.
+  Tone `forest` (default) or `soft`; sections rendered under it take the
+  `headless` prop so the heading is never duplicated.
 - **Herbs** (`#herbs`) — twelve named herbs with one-line notes from
-  `HERBS_SECTION.items`; sticky herb photo ≥960px, WhatsApp CTA + shop link.
-  Expand entries only when the detailed herb catalogue arrives.
+  `HERBS_SECTION.items`; sticky herb photo ≥960px, WhatsApp CTA + shop link
+  (both open WhatsApp). Expand entries only when the detailed herb catalogue
+  arrives.
 - **Order tray** — context + localStorage (`srf-order-tray`); sticky bar on
   mobile, floating pill + panel ≥1024px; builds the WhatsApp message via
   `buildOrderMessage()`. FAB hides while the tray is open.

@@ -12,7 +12,7 @@ export const SITE = {
 } as const;
 
 /* International format without + (254 + national number, no leading 0). */
-export const WHATSAPP_NUMBER = "254115375306";
+export const WHATSAPP_NUMBER = "254115075306";
 
 /* TODO: replace with your real contact email. When empty the
    email UI is hidden and the form falls back to WhatsApp. */
@@ -59,8 +59,9 @@ export function buildOrderMessage(
 }
 
 export const CONTACT = {
-  phone: "+254 115 375 306",
+  phone: "+254 115 075 306",
   location: "Embu, Kenya",
+  hours: "Mon – Sat · 8am – 6pm",
 } as const;
 
 /* Farm pin on Google Maps — the one place map links come from. */
@@ -91,6 +92,11 @@ export const NAV_LINKS: NavLink[] = [
   { id: "our-values", path: "/our-values", label: "Our values" },
   { id: "contact", path: "/contact", label: "Contact" },
 ];
+
+/* Nav label for a section id — used for breadcrumbs and page titles. */
+export function navLabel(id: string): string {
+  return NAV_LINKS.find((link) => link.id === id)?.label ?? SITE.name;
+}
 
 /* ---------- hero ---------- */
 
@@ -373,6 +379,8 @@ export const HERBS_SECTION = {
   imageAlt: "Bunches of fresh green herbs growing thickly in the farm herb bed",
   ctaLabel: "Ask about herbs",
   whatsappMessage: `Hello ${SITE.name}, I'd like to ask about your herbs and herbal products.`,
+  shopLabel: "Shop herbs",
+  shopWhatsappMessage: `Hello ${SITE.name}, I'd like to shop your fresh herbs.`,
   /* TODO: expand each entry once the detailed catalogue arrives. */
   items: [
     { name: "Chives", note: "Mild onion flavour for eggs, salads and soups." },
@@ -709,6 +717,11 @@ export const CONTACT_PAGE = {
   directionsLabel: "Get directions",
   mapLabel: "Open in Google Maps",
   mapTitle: `${SITE.name} on Google Maps`,
+  cards: [
+    { key: "whatsapp", label: "WhatsApp / phone" },
+    { key: "location", label: "Location" },
+    { key: "hours", label: "Hours" },
+  ] as { key: string; label: string }[],
   ctaEyebrow: "We are listening",
   ctaTitle: "Say hello, we would love to *hear* from you.",
   ctaText: `Chat with us on WhatsApp — orders, availability or tour bookings. We usually reply the same day.`,

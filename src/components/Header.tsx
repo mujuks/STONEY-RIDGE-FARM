@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { NAV_LINKS, SITE, type NavLink } from "../data/site";
@@ -9,10 +9,11 @@ const CONTACT_LINK: NavLink =
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("home");
   const [progress, setProgress] = useState(0);
   const { pathname } = useLocation();
   const headerRef = useRef<HTMLElement>(null);
+
+  const active = NAV_LINKS.find((link) => link.path === pathname)?.id ?? "";
 
   useEffect(() => {
     setOpen(false);
@@ -33,14 +34,6 @@ export default function Header() {
       const doc = document.documentElement;
       const max = doc.scrollHeight - window.innerHeight;
       setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
-
-      const offset = (headerRef.current?.offsetHeight ?? 64) + 12;
-      let current = document.getElementById("home") ? NAV_LINKS[0].id : "";
-      for (const link of NAV_LINKS) {
-        const el = document.getElementById(link.id);
-        if (el && el.getBoundingClientRect().top <= offset) current = link.id;
-      }
-      setActive(current);
     }
     function onScroll() {
       if (!raf) raf = requestAnimationFrame(measure);
@@ -55,26 +48,6 @@ export default function Header() {
     };
   }, [pathname]);
 
-  function handleNav(e: MouseEvent<HTMLAnchorElement>, link: NavLink) {
-    setOpen(false);
-    if (pathname === link.path) {
-      e.preventDefault();
-      if (link.id === "home") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        return;
-      }
-      const el = document.getElementById(link.id);
-      if (el) {
-        const top =
-          el.getBoundingClientRect().top +
-          window.scrollY -
-          (headerRef.current?.offsetHeight ?? 64) -
-          4;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-    }
-  }
-
   return (
     <header className="site-header" ref={headerRef}>
       <div className="wrap header-inner">
@@ -88,15 +61,14 @@ export default function Header() {
               key={link.id}
               to={link.path}
               className={active === link.id ? "is-active" : undefined}
-              aria-current={active === link.id ? "true" : undefined}
-              onClick={(e) => handleNav(e, link)}
+              aria-current={active === link.id ? "page" : undefined}
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <Link className="btn btn-gold header-cta" to={CONTACT_LINK.path} onClick={(e) => handleNav(e, CONTACT_LINK)}>
+        <Link className="btn btn-gold header-cta" to={CONTACT_LINK.path}>
           Get in touch
           <ArrowUpRight size={15} aria-hidden="true" />
         </Link>
@@ -130,16 +102,12 @@ export default function Header() {
               key={link.id}
               to={link.path}
               className={active === link.id ? "is-active" : undefined}
-              onClick={(e) => handleNav(e, link)}
+              aria-current={active === link.id ? "page" : undefined}
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            className="btn btn-gold nav-mobile-cta"
-            to="/contact"
-            onClick={(e) => handleNav(e, CONTACT_LINK)}
-          >
+          <Link className="btn btn-gold nav-mobile-cta" to="/contact">
             Get in touch
             <ArrowUpRight size={15} aria-hidden="true" />
           </Link>

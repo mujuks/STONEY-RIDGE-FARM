@@ -4,19 +4,25 @@ import { GALLERY, GALLERY_SECTION } from "../data/site";
 import Lightbox from "./Lightbox";
 import SectionHead from "./SectionHead";
 
-export default function GallerySection() {
+export default function GallerySection({ headless = false }: { headless?: boolean }) {
   const [index, setIndex] = useState<number | null>(null);
 
   return (
-    <section id="gallery" className="section section-gallery grain" aria-labelledby="gallery-title">
+    <section
+      id="gallery"
+      className="section section-gallery grain"
+      aria-labelledby={headless ? undefined : "gallery-title"}
+    >
       <div className="wrap">
-        <SectionHead
-          id="gallery-title"
-          eyebrow={GALLERY_SECTION.eyebrow}
-          title={GALLERY_SECTION.title}
-          text={GALLERY_SECTION.text}
-          align="center"
-        />
+        {!headless && (
+          <SectionHead
+            id="gallery-title"
+            eyebrow={GALLERY_SECTION.eyebrow}
+            title={GALLERY_SECTION.title}
+            text={GALLERY_SECTION.text}
+            align="center"
+          />
+        )}
 
         <div className="gallery-grid">
           {GALLERY.map((item, i) => (

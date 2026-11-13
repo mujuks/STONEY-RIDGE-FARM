@@ -103,7 +103,7 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-export default function Offerings() {
+export default function Offerings({ headless = false }: { headless?: boolean }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const param = (searchParams.get("category") ?? "").toLowerCase();
   const category: ProductCategory =
@@ -122,14 +122,20 @@ export default function Offerings() {
   }
 
   return (
-    <section id="offerings" className="section section-offerings" aria-labelledby="offerings-title">
+    <section
+      id="offerings"
+      className="section section-offerings"
+      aria-labelledby={headless ? undefined : "offerings-title"}
+    >
       <div className="wrap">
-        <SectionHead
-          id="offerings-title"
-          eyebrow={OFFERINGS.eyebrow}
-          title={OFFERINGS.title}
-          text={OFFERINGS.text}
-        />
+        {!headless && (
+          <SectionHead
+            id="offerings-title"
+            eyebrow={OFFERINGS.eyebrow}
+            title={OFFERINGS.title}
+            text={OFFERINGS.text}
+          />
+        )}
 
         <div
           className="filter-row reveal"

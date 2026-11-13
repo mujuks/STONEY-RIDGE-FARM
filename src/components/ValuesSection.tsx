@@ -1,20 +1,22 @@
 import { VALUES, VALUES_SECTION } from "../data/site";
 import SectionHead from "./SectionHead";
 
-export default function ValuesSection() {
+export default function ValuesSection({ headless = false }: { headless?: boolean }) {
   return (
     <section
       id="our-values"
       className="section section-values"
-      aria-labelledby="values-title"
+      aria-labelledby={headless ? undefined : "values-title"}
     >
       <div className="wrap">
-        <SectionHead
-          id="values-title"
-          eyebrow={VALUES_SECTION.eyebrow}
-          title={VALUES_SECTION.title}
-          text={VALUES_SECTION.text}
-        />
+        {!headless && (
+          <SectionHead
+            id="values-title"
+            eyebrow={VALUES_SECTION.eyebrow}
+            title={VALUES_SECTION.title}
+            text={VALUES_SECTION.text}
+          />
+        )}
 
         <div className="values-list">
           {VALUES.map((value, i) => (

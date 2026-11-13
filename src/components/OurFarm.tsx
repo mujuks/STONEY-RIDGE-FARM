@@ -1,16 +1,22 @@
 import { OUR_FARM } from "../data/site";
 import SectionHead from "./SectionHead";
 
-export default function OurFarm() {
+export default function OurFarm({ headless = false }: { headless?: boolean }) {
   return (
-    <section id="our-farm" className="section section-farm grain" aria-labelledby="farm-title">
+    <section
+      id="our-farm"
+      className="section section-farm grain"
+      aria-labelledby={headless ? undefined : "farm-title"}
+    >
       <div className="wrap">
-        <SectionHead
-          id="farm-title"
-          eyebrow={OUR_FARM.eyebrow}
-          title={OUR_FARM.title}
-          text={OUR_FARM.text}
-        />
+        {!headless && (
+          <SectionHead
+            id="farm-title"
+            eyebrow={OUR_FARM.eyebrow}
+            title={OUR_FARM.title}
+            text={OUR_FARM.text}
+          />
+        )}
 
         <div className="farm-grid">
           <figure className="farm-media reveal">

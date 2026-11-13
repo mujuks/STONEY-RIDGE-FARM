@@ -1,6 +1,14 @@
 import { useState, type FormEvent } from "react";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
-import { buildWhatsAppLink, CONTACT, CONTACT_EMAIL, CONTACT_SECTION, SITE } from "../data/site";
+import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
+import {
+  buildWhatsAppLink,
+  CONTACT,
+  CONTACT_EMAIL,
+  CONTACT_PAGE,
+  CONTACT_SECTION,
+  SITE,
+  WHATSAPP_NUMBER,
+} from "../data/site";
 import SectionHead from "./SectionHead";
 
 const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined;
@@ -82,15 +90,23 @@ export default function ContactSection() {
           <dl className="contact-details reveal">
             <div>
               <dt>
-                <Phone size={15} aria-hidden="true" /> WhatsApp / phone
+                <Phone size={15} aria-hidden="true" /> {CONTACT_PAGE.cards[0].label}
               </dt>
-              <dd>{CONTACT.phone}</dd>
+              <dd>
+                <a href={`tel:+${WHATSAPP_NUMBER}`}>{CONTACT.phone}</a>
+              </dd>
             </div>
             <div>
               <dt>
-                <MapPin size={15} aria-hidden="true" /> Location
+                <MapPin size={15} aria-hidden="true" /> {CONTACT_PAGE.cards[1].label}
               </dt>
               <dd>{CONTACT.location}</dd>
+            </div>
+            <div>
+              <dt>
+                <Clock size={15} aria-hidden="true" /> {CONTACT_PAGE.cards[2].label}
+              </dt>
+              <dd>{CONTACT.hours}</dd>
             </div>
           </dl>
         </div>

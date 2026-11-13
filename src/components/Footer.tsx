@@ -7,6 +7,7 @@ import {
   FOOTER,
   NAV_LINKS,
   SITE,
+  WHATSAPP_NUMBER,
 } from "../data/site";
 import Logo from "./Logo";
 import RidgeDivider from "./RidgeDivider";
@@ -42,8 +43,16 @@ export default function Footer() {
 
         <div className="footer-col">
           <h2>{FOOTER.contactLabel}</h2>
-          <span>{CONTACT.phone}</span>
+          <a href={`tel:+${WHATSAPP_NUMBER}`}>{CONTACT.phone}</a>
+          <a
+            href={buildWhatsAppLink(CONTACT_SECTION.whatsappMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp us
+          </a>
           <span>{CONTACT.location}</span>
+          <span>{CONTACT.hours}</span>
         </div>
 
         <div className="footer-col">

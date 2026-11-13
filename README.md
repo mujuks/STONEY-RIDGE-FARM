@@ -36,7 +36,7 @@ Project is linked to Vercel (`mujuks1/stoney-ridge-farm`). Every push to
 
 All copy, prices, links and data live in **`src/data/site.ts`**:
 
-- `WHATSAPP_NUMBER` — international format, no `+` (currently `254115375306`)
+- `WHATSAPP_NUMBER` — international format, no `+` (currently `254115075306`)
 - `CONTACT.email` via `CONTACT_EMAIL` — enables the email form (falls back
   to WhatsApp when empty)
 - `PRODUCTS` — the eighteen offerings, categories and `price` fields
@@ -52,7 +52,7 @@ Optional env (`.env.local`):
 
 ## Supply checklist (before launch)
 
-- [x] WhatsApp number in `src/data/site.ts` → `WHATSAPP_NUMBER` (`254115375306`)
+- [x] WhatsApp number in `src/data/site.ts` → `WHATSAPP_NUMBER` (`254115075306`)
 - [ ] Real email → `CONTACT_EMAIL` (or set `VITE_CONTACT_ENDPOINT`)
 - [ ] Real prices for all eighteen products (`KES 000` → actual)
 - [ ] Rabbit urine photo → `public/products/Rabbit.jpeg` is a temporary

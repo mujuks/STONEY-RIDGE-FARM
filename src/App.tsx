@@ -2,33 +2,33 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import OrderTray from "./components/OrderTray";
+import TopBar from "./components/TopBar";
+import WhatsAppFab from "./components/WhatsAppFab";
 import { OrderProvider } from "./components/OrderProvider";
 import Home from "./pages/Home";
 import Privacy from "./pages/Privacy";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-
-/* Section paths: URL path → element id on the Home page. */
-const SECTION_PATHS: Record<string, string> = {
-  "/our-farm": "our-farm",
-  "/products": "offerings",
-  "/herbs": "herbs",
-  "/gallery": "gallery",
-  "/farm-tours": "farm-tours",
-  "/our-values": "our-values",
-};
+import OurFarm from "./pages/OurFarm";
+import Products from "./pages/Products";
+import Herbs from "./pages/Herbs";
+import Gallery from "./pages/Gallery";
+import FarmTours from "./pages/FarmTours";
+import Values from "./pages/Values";
 
 function usePageEffects() {
   const { pathname, hash } = useLocation();
 
+  /* Every route is its own page — always start at the top,
+     unless the URL carries a hash target. */
   useEffect(() => {
     const hashId = hash.startsWith("#") ? hash.slice(1) : "";
-    const id = hashId || SECTION_PATHS[pathname] || "";
-    const target = id ? document.getElementById(id) : null;
+    const target = hashId ? document.getElementById(hashId) : null;
     if (target) {
       requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
     } else {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [pathname, hash]);
 
@@ -59,16 +59,17 @@ function Shell() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+      <TopBar />
       <Header />
       <main id="main">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/our-farm" element={<Home />} />
-          <Route path="/products" element={<Home />} />
-          <Route path="/herbs" element={<Home />} />
-          <Route path="/gallery" element={<Home />} />
-          <Route path="/farm-tours" element={<Home />} />
-          <Route path="/our-values" element={<Home />} />
+          <Route path="/our-farm" element={<OurFarm />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/herbs" element={<Herbs />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/farm-tours" element={<FarmTours />} />
+          <Route path="/our-values" element={<Values />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/about" element={<Navigate to="/our-farm" replace />} />
@@ -79,6 +80,8 @@ function Shell() {
         </Routes>
       </main>
       <Footer />
+      <OrderTray />
+      <WhatsAppFab />
     </OrderProvider>
   );
 }
