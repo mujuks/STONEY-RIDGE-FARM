@@ -5,7 +5,7 @@ import {
   CONTACT,
   CONTACT_SECTION,
   FOOTER,
-  NAV_LINKS,
+  FOOTER_LINKS,
   SITE,
   WHATSAPP_NUMBER,
 } from "../data/site";
@@ -34,7 +34,7 @@ export default function Footer() {
 
         <nav className="footer-col" aria-label={FOOTER.quickLinksLabel}>
           <h2>{FOOTER.quickLinksLabel}</h2>
-          {NAV_LINKS.map((link) => (
+          {FOOTER_LINKS.map((link) => (
             <Link key={link.id} to={link.path}>
               {link.label}
             </Link>

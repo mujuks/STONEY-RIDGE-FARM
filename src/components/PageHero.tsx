@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { NAV_LINKS } from "../data/site";
+import { navLabel } from "../data/site";
 import { accentTitle } from "./SectionHead";
 
 /* Home / Current — used at the top of every inner page. */
@@ -35,7 +35,7 @@ export default function PageHero({
   actions,
   tone = "forest",
 }: Props) {
-  const current = NAV_LINKS.find((link) => link.id === navId)?.label ?? "";
+  const current = navLabel(navId);
   return (
     <section
       className={`page-hero page-hero--${tone}`}

@@ -1,27 +1,23 @@
-import ContactSection from "../components/ContactSection";
-import FaqSection from "../components/FaqSection";
+import ContactCta from "../components/ContactCta";
+import ExploreSection from "../components/ExploreSection";
 import HarvestBoard from "../components/HarvestBoard";
 import Hero from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
-import Offerings from "../components/Offerings";
-import OurFarm from "../components/OurFarm";
 import Testimonials from "../components/Testimonials";
-import ToursSection from "../components/ToursSection";
 import WelcomeStrip from "../components/WelcomeStrip";
 
+/* Home is a landing page: hero, the site map and the short answers.
+   Every full section lives on its own page. */
 export default function Home() {
   return (
     <>
       <Hero />
       <WelcomeStrip />
-      <OurFarm />
-      <Offerings />
+      <ExploreSection />
       <HarvestBoard />
-      <ToursSection />
       <HowItWorks />
       <Testimonials />
-      <FaqSection />
-      <ContactSection />
+      <ContactCta />
     </>
   );
 }

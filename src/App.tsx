@@ -16,6 +16,7 @@ import Herbs from "./pages/Herbs";
 import Gallery from "./pages/Gallery";
 import FarmTours from "./pages/FarmTours";
 import Values from "./pages/Values";
+import Faq from "./pages/Faq";
 
 function usePageEffects() {
   const { pathname, hash } = useLocation();
@@ -71,6 +72,7 @@ function Shell() {
           <Route path="/farm-tours" element={<FarmTours />} />
           <Route path="/our-values" element={<Values />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<Faq />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/about" element={<Navigate to="/our-farm" replace />} />
           <Route path="/offerings" element={<Navigate to="/products" replace />} />

@@ -55,9 +55,24 @@ Never hardcode hex in components — always use the tokens.
 - Pills (`999px`) for buttons, chips, badges; cards 16–20px radius.
 - One shadow token: `0 1px 2px rgba(38,53,30,.08)` — sticky header + card
   hover only.
-- Section background rhythm: hero (orchard photo) → sand marquee → cream →
-  cream-2 → cream (herbs) → sage-100 → cream → **forest** (tours) → cream-2 →
-  sand → cream → **soft-green** (contact) → **deep-forest** (footer).
+- Section background rhythm: hero (orchard photo) → sand marquee → cream-2
+  (home explore grid) → sage-100 (harvest board) → sand (how it works) →
+  cream (testimonials, when real quotes exist) → **soft-green** (closing CTA)
+  → **deep-forest** (footer). Inner pages: **forest** page hero → their own
+  section background.
+
+## Pages
+
+Every nav item is its own route; nothing scroll-jumps within a page.
+
+- **Home** (`/`) — landing page only: hero → marquee → `EXPLORE` site-map
+  grid (one card per page) → weekly harvest board → how ordering works →
+  testimonials (hidden until real quotes) → closing WhatsApp/contact band.
+  The full farm, products, herbs, gallery, tours, values, FAQ and contact
+  sections live on their own pages.
+- **Inner pages** — `PageHero` (breadcrumb + h1) then the section with the
+  `headless` prop: `/our-farm`, `/products`, `/herbs`, `/gallery`,
+  `/farm-tours`, `/our-values`, `/faq`, `/contact`, `/privacy`.
 
 ## Components
 
@@ -84,9 +99,12 @@ Never hardcode hex in components — always use the tokens.
   `buildOrderMessage()`. FAB hides while the tray is open.
 - **Gallery** — editorial mosaic (feature 2×2 + wide 2×1 tiles, overlay
   captions) + lightbox (Esc, arrows, focus on close).
+- **Explore grid** (`ExploreSection`) — home site map built from
+  `EXPLORE.cards`: icon tile, label, blurb, arrow; 1 / 2 / 4 columns.
 - **Contact** — WhatsApp-first; email form renders only when
   `CONTACT_EMAIL` or `VITE_CONTACT_ENDPOINT` is set (mailto fallback,
-  honeypot, inline validation).
+  honeypot, inline validation). The home page ends with a slim
+  `ContactCta` band (WhatsApp + contact page) instead of the full section.
 - **Testimonials** — renders nothing while `TESTIMONIALS` is empty. Never
   invent quotes.
 - **Footer** — logo, blurb, nav, contact, legal only. No social links until

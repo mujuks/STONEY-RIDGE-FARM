@@ -95,8 +95,85 @@ export const NAV_LINKS: NavLink[] = [
 
 /* Nav label for a section id — used for breadcrumbs and page titles. */
 export function navLabel(id: string): string {
-  return NAV_LINKS.find((link) => link.id === id)?.label ?? SITE.name;
+  return (
+    NAV_LINKS.find((link) => link.id === id)?.label ??
+    EXPLORE.cards.find((card) => card.path === `/${id}`)?.label ??
+    SITE.name
+  );
 }
+
+/* ---------- explore (home page site map) ---------- */
+
+export type ExploreIcon = "sprout" | "basket" | "leaf" | "images" | "calendar" | "heart" | "help" | "chat";
+
+export interface ExploreCard {
+  path: string;
+  label: string;
+  blurb: string;
+  icon: ExploreIcon;
+}
+
+export const EXPLORE = {
+  eyebrow: "Explore the farm",
+  title: "Every corner of the *ridge.*",
+  text: "Each part of the farm has its own page — pick one and go straight to what you need.",
+  cards: [
+    {
+      path: "/our-farm",
+      label: "Our farm",
+      blurb: "The orchard, the hives and the story behind the ridge.",
+      icon: "sprout",
+    },
+    {
+      path: "/products",
+      label: "What we offer",
+      blurb: "Eggs, honey, herbs, fruit, fish, bunnies and more.",
+      icon: "basket",
+    },
+    {
+      path: "/herbs",
+      label: "Herbs",
+      blurb: "Twelve herbs grown fresh for tea and cooking.",
+      icon: "leaf",
+    },
+    {
+      path: "/gallery",
+      label: "Gallery",
+      blurb: "Photos from the orchard, the coop and the kitchen table.",
+      icon: "images",
+    },
+    {
+      path: "/farm-tours",
+      label: "Farm tours",
+      blurb: "Walk the ridge with us — book a slot on WhatsApp.",
+      icon: "calendar",
+    },
+    {
+      path: "/our-values",
+      label: "Our values",
+      blurb: "How we farm and what we stand for.",
+      icon: "heart",
+    },
+    {
+      path: "/faq",
+      label: "Questions",
+      blurb: "Ordering, delivery, pickup, prices and visits.",
+      icon: "help",
+    },
+    {
+      path: "/contact",
+      label: "Contact",
+      blurb: "WhatsApp, phone, opening hours and directions.",
+      icon: "chat",
+    },
+  ] as ExploreCard[],
+};
+
+/* Header nav plus the pages that live in the footer only. */
+export const FOOTER_LINKS: NavLink[] = [
+  ...NAV_LINKS,
+  { id: "faq", path: "/faq", label: "Questions" },
+];
 
 /* ---------- hero ---------- */
 
@@ -680,7 +757,7 @@ export const FAQ = {
     },
     {
       q: "Can I visit the farm?",
-      a: "Yes! We run farm tours — see the farm tours section above and message us on WhatsApp to book a slot.",
+      a: "Yes! We run farm tours — see the farm tours page and message us on WhatsApp to book a slot.",
     },
     {
       q: "Which herbs do you grow?",

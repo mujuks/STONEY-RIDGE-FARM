@@ -1,4 +1,4 @@
-import { ArrowUpRight, MapPin, Navigation, Phone } from "lucide-react";
+import { ArrowUpRight, Clock, MapPin, Navigation, Phone } from "lucide-react";
 import {
   buildWhatsAppLink,
   CONTACT,
@@ -7,12 +7,14 @@ import {
   navLabel,
   WHATSAPP_NUMBER,
 } from "../data/site";
+import ContactForm from "../components/ContactForm";
 import { Breadcrumbs } from "../components/PageHero";
 import { accentTitle } from "../components/SectionHead";
 
 const CARDS = [
   { icon: Phone, label: CONTACT_PAGE.cards[0].label, value: CONTACT.phone, href: `tel:+${WHATSAPP_NUMBER}` },
   { icon: MapPin, label: CONTACT_PAGE.cards[1].label, value: CONTACT.location, href: FARM_LOCATION.viewUrl },
+  { icon: Clock, label: CONTACT_PAGE.cards[2].label, value: CONTACT.hours, href: "" },
 ];
 
 export default function Contact() {
@@ -129,6 +131,8 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      <ContactForm />
 
       <section className="section contact-page-cta" aria-labelledby="contact-cta-title">
         <div className="wrap contact-cta-inner">

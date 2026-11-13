@@ -2,16 +2,21 @@ import { ChevronDown } from "lucide-react";
 import { FAQ } from "../data/site";
 import SectionHead from "./SectionHead";
 
-export default function FaqSection() {
+export default function FaqSection({ headless = false }: { headless?: boolean }) {
   return (
-    <section className="section section-faq grain" aria-labelledby="faq-title">
+    <section
+      className="section section-faq grain"
+      aria-labelledby={headless ? undefined : "faq-title"}
+    >
       <div className="wrap faq-wrap">
-        <SectionHead
-          id="faq-title"
-          eyebrow={FAQ.eyebrow}
-          title={FAQ.title}
-          text={FAQ.text}
-        />
+        {!headless && (
+          <SectionHead
+            id="faq-title"
+            eyebrow={FAQ.eyebrow}
+            title={FAQ.title}
+            text={FAQ.text}
+          />
+        )}
 
         <div className="faq-list">
           {FAQ.items.map((item) => (

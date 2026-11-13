@@ -10,7 +10,7 @@ WhatsApp-first ordering flow, farm tours, gallery and contact form.
 - [Vite](https://vite.dev) + React 19 + TypeScript
 - [react-router-dom](https://reactrouter.com) (path routes: `/`, `/our-farm`,
   `/products`, `/herbs`, `/gallery`, `/farm-tours`, `/our-values`,
-  `/contact`, `/privacy`, 404)
+  `/contact`, `/faq`, `/privacy`, 404)
 - Plain CSS with design tokens — see [`BRAND.md`](./BRAND.md)
 - [lucide-react](https://lucide.dev) icons only
 
@@ -42,6 +42,7 @@ All copy, prices, links and data live in **`src/data/site.ts`**:
 - `PRODUCTS` — the eighteen offerings, categories and `price` fields
 - `HERBS_SECTION` — the twelve herbs, notes and section copy
 - `HARVEST_BOARD.rows`, `FARM_TOURS`, `FAQ.items`, `VALUES`, `GALLERY`
+- `EXPLORE.cards` — the home page site map (label, blurb, icon per page)
 - `TESTIMONIALS` — section stays hidden while the array is empty; never
   invent quotes
 
@@ -72,7 +73,8 @@ scripts/make-og.ps1  regenerate the OG share image (Windows PowerShell)
 src/
   data/site.ts     ← single source of truth for all content
   components/      Header, Hero, sections, OrderTray, Lightbox, Footer…
-  pages/           Home, Privacy, NotFound
+  pages/           Home, OurFarm, Products, Herbs, Gallery, FarmTours,
+                   Values, Contact, Faq, Privacy, NotFound
   index.css        design tokens + all styles (see BRAND.md)
 BRAND.md           colour type and component reference
 ```
