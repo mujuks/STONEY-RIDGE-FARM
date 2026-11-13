@@ -69,12 +69,6 @@ export default function Footer() {
         <small>
           © {SITE.established} {SITE.name}. All rights reserved.
         </small>
-        <small>
-          Developed by{" "}
-          <a href="https://github.com/mujuks" target="_blank" rel="noopener noreferrer">
-            Max-mujuks
-          </a>
-        </small>
       </div>
     </footer>
   );
