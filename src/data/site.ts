@@ -106,7 +106,7 @@ export const HERO = {
   stats: [
     { value: 2026, prefix: "", suffix: "", label: "Established" },
     /* keep in sync with PRODUCTS.length below */
-    { value: 16, prefix: "", suffix: "", label: "Farm offerings" },
+    { value: 18, prefix: "", suffix: "", label: "Farm offerings" },
     { value: 1, prefix: "", suffix: "", label: "Farm tours weekly" },
   ],
 } as const;
@@ -125,6 +125,8 @@ export const MARQUEE_ITEMS = [
   "Fresh fruit juices",
   "Quail chicks",
   "Christmas goats",
+  "Bunnies",
+  "Rabbit urine",
   "Azolla fish feed",
   "Weekly harvest box",
   "Farm tours",
@@ -136,7 +138,7 @@ export const MARQUEE_ITEMS = [
 export const OUR_FARM = {
   eyebrow: "Our farm",
   title: "Fruit trees, hives and *herbs* — a ridge full of life.",
-  text: "Rows of fruit trees — oranges, avocados, pomegranates and pawpaw — stand across the ridge, with honey bees working every blossom from first flower to last fruit. Between them grow our herb beds: mint, lemongrass, rosemary, lavender, chamomile and more. Quail chicks, Christmas goats, azolla and our fish ponds complete the farm, so one corner supports the next. It is as much a home for biodiversity as it is a source of food.",
+  text: "Rows of fruit trees — oranges, avocados, pomegranates and pawpaw — stand across the ridge, with honey bees working every blossom from first flower to last fruit. Between them grow our herb beds: mint, lemongrass, rosemary, lavender, chamomile and more. Quail chicks, Christmas goats, bunnies, azolla and our fish ponds complete the farm, so one corner supports the next. It is as much a home for biodiversity as it is a source of food.",
   image: "/grow.jpeg",
   imageAlt: "Watering young seedlings growing in dark soil",
   secondaryImage: "/farmstory.jpeg",
@@ -301,6 +303,24 @@ export const PRODUCTS: Product[] = [
     alt: "A brown and black farm goat standing on green grass",
   },
   {
+    id: "bunnies",
+    name: "Bunnies",
+    unit: "Per rabbit",
+    category: "Livestock and feed",
+    price: "KES 000",
+    img: "/products/Rabbit.jpeg",
+    alt: "A light brown and white bunny nibbling a fresh carrot in the garden",
+  },
+  {
+    id: "rabbit-urine",
+    name: "Rabbit urine",
+    unit: "Per litre",
+    category: "Livestock and feed",
+    price: "KES 000",
+    img: "/products/Rabbit.jpeg",
+    alt: "A light brown and white bunny nibbling a fresh carrot in the garden",
+  },
+  {
     id: "azolla",
     name: "Azolla",
     unit: "Per sack",
@@ -331,8 +351,8 @@ export const PRODUCTS: Product[] = [
 
 export const OFFERINGS = {
   eyebrow: "What we offer",
-  /* "Sixteen" must match PRODUCTS.length above. */
-  title: "Sixteen good things, grown *here.*",
+  /* "Eighteen" must match PRODUCTS.length above. */
+  title: "Eighteen good things, grown *here.*",
   text: "Add what you like to the order tray and send it straight to us on WhatsApp. Availability changes with the season — we will confirm what is ready.",
   note: "Availability may vary by season. Prices are confirmed when you order.",
 } as const;
@@ -461,6 +481,13 @@ export const GALLERY: GalleryItem[] = [
     caption: "From the paddock",
   },
   {
+    src: "/products/Rabbit.jpeg",
+    alt: "A light brown and white bunny nibbling a fresh carrot in the garden",
+    title: "Bunnies",
+    caption: "From the rabbitry",
+    size: "feature",
+  },
+  {
     src: "/products/Azolla.jpeg",
     alt: "Dense bright green azolla fronds covering the surface of the water",
     title: "Azolla",
@@ -536,7 +563,7 @@ export const GALLERY_SECTION = {
 export const FARM_TOURS = {
   eyebrow: "Farm tours",
   title: "Walk the ridge, taste the *harvest.*",
-  text: "Spend a morning with us: wander the orchard rows, see the hives and the herb beds, meet the hens and quail and taste whatever is in season. Small groups, real farm life.",
+  text: "Spend a morning with us: wander the orchard rows, see the hives and the herb beds, meet the hens, quail and bunnies and taste whatever is in season. Small groups, real farm life.",
   image: "/farmer.jpeg",
   imageAlt: "A farmer at work on the land",
   /* TODO: replace with your real tour price and duration. */
@@ -621,7 +648,7 @@ export const TESTIMONIALS: Testimonial[] = [];
 export const TESTIMONIALS_SECTION = {
   eyebrow: "Kind words",
   title: "Loved at the *table.*",
-  text: "What people say about food from Stoney Ridge Farm.",
+  text: `What people say about food from ${SITE.name}.`,
 } as const;
 
 /* ---------- faq ---------- */
@@ -652,8 +679,8 @@ export const FAQ = {
       a: "Chives, lemon balm, mint, lemongrass, rosemary, aloe vera, parsley, lavender, chamomile, wormwood, dried bay leaves and hibiscus tea leaves. A full catalogue with descriptions and prices is on the way — message us for what is cut fresh today.",
     },
     {
-      q: "Do you have quail, goats and azolla?",
-      a: "Yes — young quail chicks, Christmas goats, and azolla as supplementary feed for fish and chickens. Availability is confirmed on WhatsApp.",
+      q: "Do you have quail, goats, rabbits and azolla?",
+      a: "Yes — young quail chicks, Christmas goats, bunnies and rabbit urine, plus azolla as supplementary feed for fish and chickens. Availability is confirmed on WhatsApp.",
     },
     {
       q: "What if something is out of stock?",
@@ -681,11 +708,7 @@ export const CONTACT_PAGE = {
   whatsappMessage: `Hello ${SITE.name}, I'd like to get in touch.`,
   directionsLabel: "Get directions",
   mapLabel: "Open in Google Maps",
-  mapTitle: "Stoney Ridge Farm on Google Maps",
-  cards: [
-    { key: "whatsapp", label: "WhatsApp / phone" },
-    { key: "location", label: "Location" },
-  ],
+  mapTitle: `${SITE.name} on Google Maps`,
   ctaEyebrow: "We are listening",
   ctaTitle: "Say hello, we would love to *hear* from you.",
   ctaText: `Chat with us on WhatsApp — orders, availability or tour bookings. We usually reply the same day.`,
@@ -695,7 +718,7 @@ export const CONTACT_PAGE = {
 
 export const FOOTER = {
   blurb:
-    "Orchard fruit, pomegranates, fresh herbs, farm eggs, honey, quail, goats and fish — grown with care on the ridge and brought from farm to table.",
+    "Orchard fruit, pomegranates, fresh herbs, farm eggs, honey, quail, goats, bunnies and fish — grown with care on the ridge and brought from farm to table.",
   quickLinksLabel: "Explore",
   contactLabel: "Contact",
   legalLabel: "Legal",

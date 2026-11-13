@@ -7,8 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { OrderLine, Product } from "../data/site";
-import { displayPrice } from "../data/site";
+import type { OrderLine } from "../data/site";
 
 const STORAGE_KEY = "srf-order-tray";
 
@@ -16,9 +15,8 @@ interface OrderState {
   items: OrderLine[];
   open: boolean;
   lastAdded: string | null;
-  add: (product: Product) => void;
+  add: (line: Omit<OrderLine, "qty">) => void;
   remove: (id: string) => void;
-  setQty: (id: string, qty: number) => void;
   clear: () => void;
   setOpen: (open: boolean) => void;
   qtyOf: (id: string) => number;
@@ -39,7 +37,7 @@ function load(): OrderLine[] {
         typeof i.name === "string" &&
         typeof i.qty === "number" &&
         i.qty > 0,
-    ).map((i) => ({ ...i, price: displayPrice(String(i.price ?? "")) }));
+    );
   } catch {
     return [];
   }
@@ -58,27 +56,18 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     }
   }, [items]);
 
-  const add = useCallback((product: Product) => {
+  const add = useCallback((line: Omit<OrderLine, "qty">) => {
     setItems((prev) => {
-      const found = prev.find((i) => i.id === product.id);
+      const found = prev.find((i) => i.id === line.id);
       if (found) {
         return prev.map((i) =>
-          i.id === product.id ? { ...i, qty: i.qty + 1 } : i,
+          i.id === line.id ? { ...i, qty: i.qty + 1 } : i,
         );
       }
-      return [
-        ...prev,
-        {
-          id: product.id,
-          name: product.name,
-          unit: product.unit,
-          price: displayPrice(product.price),
-          qty: 1,
-        },
-      ];
+      return [...prev, { ...line, qty: 1 }];
     });
-    setLastAdded(product.id);
-    window.setTimeout(() => setLastAdded((v) => (v === product.id ? null : v)), 1400);
+    setLastAdded(line.id);
+    window.setTimeout(() => setLastAdded((v) => (v === line.id ? null : v)), 1400);
   }, []);
 
   const remove = useCallback((id: string) => {
@@ -86,14 +75,6 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       prev
         .map((i) => (i.id === id ? { ...i, qty: i.qty - 1 } : i))
         .filter((i) => i.qty > 0),
-    );
-  }, []);
-
-  const setQty = useCallback((id: string, qty: number) => {
-    setItems((prev) =>
-      qty <= 0
-        ? prev.filter((i) => i.id !== id)
-        : prev.map((i) => (i.id === id ? { ...i, qty } : i)),
     );
   }, []);
 
@@ -105,8 +86,8 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   );
 
   const value = useMemo(
-    () => ({ items, open, lastAdded, add, remove, setQty, clear, setOpen, qtyOf }),
-    [items, open, lastAdded, add, remove, setQty, clear, qtyOf],
+    () => ({ items, open, lastAdded, add, remove, clear, setOpen, qtyOf }),
+    [items, open, lastAdded, add, remove, clear, qtyOf],
   );
 
   return <OrderContext.Provider value={value}>{children}</OrderContext.Provider>;

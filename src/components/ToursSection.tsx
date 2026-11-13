@@ -1,5 +1,5 @@
 import { ArrowUpRight, Check } from "lucide-react";
-import { buildWhatsAppLink, FARM_TOURS } from "../data/site";
+import { buildWhatsAppLink, FARM_TOURS, SITE } from "../data/site";
 import SectionHead from "./SectionHead";
 
 export default function ToursSection() {
@@ -43,7 +43,7 @@ export default function ToursSection() {
             <a
               className="btn btn-gold"
               href={buildWhatsAppLink(
-                "Hello Stoney Ridge Farm, I'd like to book a farm tour.",
+                `Hello ${SITE.name}, I'd like to book a farm tour.`,
               )}
               target="_blank"
               rel="noopener noreferrer"

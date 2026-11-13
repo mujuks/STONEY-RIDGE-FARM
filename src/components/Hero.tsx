@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { buildWhatsAppLink, HERO } from "../data/site";
+import { buildWhatsAppLink, HERO, SITE } from "../data/site";
 import RidgeDivider from "./RidgeDivider";
 
 function prefersReducedMotion() {
@@ -76,7 +76,7 @@ export default function Hero() {
           <div className="hero-actions reveal">
             <a
               className="btn btn-gold"
-              href={buildWhatsAppLink("Hello Stoney Ridge Farm, I'd like to order")}
+              href={buildWhatsAppLink(`Hello ${SITE.name}, I'd like to order`)}
               target="_blank"
               rel="noopener noreferrer"
             >

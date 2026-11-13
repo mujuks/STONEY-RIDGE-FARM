@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
-import { buildWhatsAppLink, CONTACT, CONTACT_EMAIL, CONTACT_SECTION } from "../data/site";
+import { buildWhatsAppLink, CONTACT, CONTACT_EMAIL, CONTACT_SECTION, SITE } from "../data/site";
 import SectionHead from "./SectionHead";
 
 const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined;
@@ -42,7 +42,7 @@ export default function ContactSection() {
         });
         if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       } else {
-        const subject = encodeURIComponent(`Stoney Ridge Farm — message from ${name}`);
+        const subject = encodeURIComponent(`${SITE.name} — message from ${name}`);
         const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
         window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
       }

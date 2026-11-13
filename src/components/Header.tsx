@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { NAV_LINKS, type NavLink } from "../data/site";
+import { NAV_LINKS, SITE, type NavLink } from "../data/site";
 import Logo from "./Logo";
 
 const CONTACT_LINK: NavLink =
@@ -78,7 +78,7 @@ export default function Header() {
   return (
     <header className="site-header" ref={headerRef}>
       <div className="wrap header-inner">
-        <Link className="brand" to="/" aria-label="Stoney Ridge Farm — home">
+        <Link className="brand" to="/" aria-label={`${SITE.name} — home`}>
           <Logo size={38} />
         </Link>
 

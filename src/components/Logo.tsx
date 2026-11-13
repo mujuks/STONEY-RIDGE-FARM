@@ -1,3 +1,5 @@
+import { SITE } from "../data/site";
+
 interface LogoProps {
   variant?: "full" | "mark" | "light";
   size?: number;
@@ -19,7 +21,7 @@ export default function Logo({ variant = "full", size = 40, className }: LogoPro
       />
       {variant !== "mark" && (
         <span className="logo-text">
-          <span className="logo-name">Stoney Ridge Farm</span>
+          <span className="logo-name">{SITE.name}</span>
           <span className="logo-tag">From farm to table</span>
         </span>
       )}

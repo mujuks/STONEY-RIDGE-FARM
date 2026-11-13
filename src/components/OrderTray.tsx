@@ -6,6 +6,7 @@ import {
   CONTACT,
   displayPrice,
   PRODUCTS,
+  SITE,
 } from "../data/site";
 import { useOrder } from "./OrderProvider";
 
@@ -14,7 +15,6 @@ export default function OrderTray() {
   const [name, setName] = useState("");
   const [area, setArea] = useState("");
   const [selected, setSelected] = useState("");
-  const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   const count = items.reduce((sum, i) => sum + i.qty, 0);
@@ -79,7 +79,6 @@ export default function OrderTray() {
       <div
         id="order-tray-panel"
         className={`tray-panel${open ? " is-open" : ""}`}
-        ref={panelRef}
         role="dialog"
         aria-modal={open ? "true" : undefined}
         aria-label="Order tray"
@@ -144,7 +143,7 @@ export default function OrderTray() {
                   <div className="tray-item-info">
                     <strong>{item.name}</strong>
                     <span>
-                      {item.unit} · {item.price}
+                      {item.unit} · {displayPrice(item.price)}
                     </span>
                   </div>
                   <div className="tray-qty" aria-label={`Quantity of ${item.name}`}>
@@ -166,9 +165,6 @@ export default function OrderTray() {
                           name: item.name,
                           unit: item.unit,
                           price: item.price,
-                          category: "All",
-                          img: "",
-                          alt: "",
                         })
                       }
                       tabIndex={open ? 0 : -1}
@@ -206,7 +202,7 @@ export default function OrderTray() {
 
           <a
             className="tray-wa"
-            href={buildWhatsAppLink("Hello Stoney Ridge Farm!")}
+            href={buildWhatsAppLink(`Hello ${SITE.name}!`)}
             target="_blank"
             rel="noopener noreferrer"
             tabIndex={open ? 0 : -1}

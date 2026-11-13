@@ -9,8 +9,8 @@ import {
 import { accentTitle } from "../components/SectionHead";
 
 const CARDS = [
-  { icon: Phone, label: CONTACT_PAGE.cards[0].label, value: CONTACT.phone, href: `tel:+${WHATSAPP_NUMBER}` },
-  { icon: MapPin, label: CONTACT_PAGE.cards[1].label, value: CONTACT.location, href: FARM_LOCATION.viewUrl },
+  { icon: Phone, label: "WhatsApp / phone", value: CONTACT.phone, href: `tel:+${WHATSAPP_NUMBER}` },
+  { icon: MapPin, label: "Location", value: CONTACT.location, href: FARM_LOCATION.viewUrl },
 ];
 
 export default function Contact() {
