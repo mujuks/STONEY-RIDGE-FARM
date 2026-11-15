@@ -178,9 +178,9 @@ export const FOOTER_LINKS: NavLink[] = [
 /* ---------- hero ---------- */
 
 export const HERO = {
-  image: "/images/hero-orchard.jpg",
+  image: "/products/pomegranates.jpg",
   imageAlt:
-    "Sunlit fruit orchard heavy with apples, oranges and mangoes while honey bees work the blossoms beside a wooden hive",
+    "Ripe red pomegranates hanging from a tree branch, one split open to show its jewel-red seeds",
   eyebrow: "Rooted in nature · Established 2026",
   titleLine1: "Good things",
   titleLine2: "grow",
