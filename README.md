@@ -56,7 +56,7 @@ Optional env (`.env.local`):
 - [x] WhatsApp number in `src/data/site.ts` → `WHATSAPP_NUMBER` (`254115075306`)
 - [ ] Real email → `CONTACT_EMAIL` (or set `VITE_CONTACT_ENDPOINT`)
 - [ ] Real prices for all eighteen products (`KES 000` → actual)
-- [ ] Rabbit urine photo → `public/products/Rabbit.jpeg` is a temporary
+- [ ] Rabbit urine photo → `public/products/Rabbit .jpeg` is a temporary
   stand-in for the `rabbit-urine` product card
 - [ ] Detailed herb catalogue → `HERBS_SECTION.items`
 - [ ] Real tour price and duration → `FARM_TOURS.price` / `FARM_TOURS.duration`
