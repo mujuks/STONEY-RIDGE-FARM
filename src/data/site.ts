@@ -206,7 +206,7 @@ export const MARQUEE_ITEMS = [
   "Fresh vegetables",
   "Fresh fish",
   "Fresh fruit juices",
-  "Quail chicks",
+  "Guinea fowl chicks",
   "Christmas goats",
   "Bunnies",
   "Rabbit urine",
@@ -221,7 +221,7 @@ export const MARQUEE_ITEMS = [
 export const OUR_FARM = {
   eyebrow: "Our farm",
   title: "Fruit trees, hives and *herbs* — a ridge full of life.",
-  text: "Rows of fruit trees — oranges, avocados, pomegranates and pawpaw — stand across the ridge, with honey bees working every blossom from first flower to last fruit. Between them grow our herb beds: mint, lemongrass, rosemary, lavender, chamomile and more. Quail chicks, Christmas goats, bunnies, azolla and our fish ponds complete the farm, so one corner supports the next. It is as much a home for biodiversity as it is a source of food.",
+  text: "Rows of fruit trees — oranges, avocados, pomegranates and pawpaw — stand across the ridge, with honey bees working every blossom from first flower to last fruit. Between them grow our herb beds: mint, lemongrass, rosemary, lavender, chamomile and more. Guinea fowl chicks, Christmas goats, bunnies, azolla and our fish ponds complete the farm, so one corner supports the next. It is as much a home for biodiversity as it is a source of food.",
   image: "/grow.jpeg",
   imageAlt: "Watering young seedlings growing in dark soil",
   secondaryImage: "/farmstory.jpeg",
@@ -368,13 +368,13 @@ export const PRODUCTS: Product[] = [
     alt: "Fresh mint, rosemary and basil growing in the herb bed",
   },
   {
-    id: "quail-chicks",
-    name: "Quail chicks",
+    id: "guinea-fowl-chicks",
+    name: "Guinea fowl chicks",
     unit: "Per chick",
     category: "Livestock and feed",
     price: "KES 000",
     img: "/products/Quail chicks.jpeg",
-    alt: "Young quail chicks huddled together on wood shavings in a brooder",
+    alt: "Young guinea fowl chicks huddled together on wood shavings in a brooder",
   },
   {
     id: "christmas-goats",
@@ -554,8 +554,8 @@ export const GALLERY: GalleryItem[] = [
   },
   {
     src: "/products/Quail chicks.jpeg",
-    alt: "Young quail chicks huddled together on wood shavings in a brooder",
-    title: "Quail chicks",
+    alt: "Young guinea fowl chicks huddled together on wood shavings in a brooder",
+    title: "Guinea fowl chicks",
     caption: "From the rearing shed",
     size: "feature",
   },
@@ -648,7 +648,7 @@ export const GALLERY_SECTION = {
 export const FARM_TOURS = {
   eyebrow: "Farm tours",
   title: "Walk the ridge, taste the *harvest.*",
-  text: "Spend a morning with us: wander the orchard rows, see the hives and the herb beds, meet the hens, quail and bunnies and taste whatever is in season. Small groups, real farm life.",
+  text: "Spend a morning with us: wander the orchard rows, see the hives and the herb beds, meet the hens, guinea fowl and bunnies and taste whatever is in season. Small groups, real farm life.",
   image: "/farmer.jpeg",
   imageAlt: "A farmer at work on the land",
   /* TODO: replace with your real tour price and duration. */
@@ -764,8 +764,8 @@ export const FAQ = {
       a: "Chives, lemon balm, mint, lemongrass, rosemary, aloe vera, parsley, lavender, chamomile, wormwood, dried bay leaves and hibiscus tea leaves. A full catalogue with descriptions and prices is on the way — message us for what is cut fresh today.",
     },
     {
-      q: "Do you have quail, goats, rabbits and azolla?",
-      a: "Yes — young quail chicks, Christmas goats, bunnies and rabbit urine, plus azolla as supplementary feed for fish and chickens. Availability is confirmed on WhatsApp.",
+      q: "Do you have guinea fowl, goats, rabbits and azolla?",
+      a: "Yes — young guinea fowl chicks, Christmas goats, bunnies and rabbit urine, plus azolla as supplementary feed for fish and chickens. Availability is confirmed on WhatsApp.",
     },
     {
       q: "What if something is out of stock?",
@@ -808,7 +808,7 @@ export const CONTACT_PAGE = {
 
 export const FOOTER = {
   blurb:
-    "Orchard fruit, pomegranates, fresh herbs, farm eggs, honey, quail, goats, bunnies and fish — grown with care on the ridge and brought from farm to table.",
+    "Orchard fruit, pomegranates, fresh herbs, farm eggs, honey, guinea fowl, goats, bunnies and fish — grown with care on the ridge and brought from farm to table.",
   quickLinksLabel: "Explore",
   contactLabel: "Contact",
   legalLabel: "Legal",
