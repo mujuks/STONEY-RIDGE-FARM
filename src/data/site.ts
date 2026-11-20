@@ -8,7 +8,7 @@ export const SITE = {
   name: "Stoney Ridge Farm",
   tagline: "From farm to table",
   established: "2026",
-  domain: "https://stoney-ridge-farm.vercel.app",
+  domain: "https://www.stoney-ridgefarm.co.ke",
 } as const;
 
 /* International format without + (254 + national number, no leading 0). */
