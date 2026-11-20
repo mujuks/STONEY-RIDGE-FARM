@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { NAV_LINKS, SITE, type NavLink } from "../data/site";
+import { CONTACT_EMAIL, NAV_LINKS, SITE } from "../data/site";
 import Logo from "./Logo";
-
-const CONTACT_LINK: NavLink =
-  NAV_LINKS.find((link) => link.id === "contact") ?? NAV_LINKS[NAV_LINKS.length - 1];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -68,10 +65,10 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link className="btn btn-gold header-cta" to={CONTACT_LINK.path}>
+        <a className="btn btn-gold header-cta" href={`mailto:${CONTACT_EMAIL}`}>
           Get in touch
           <ArrowUpRight size={15} aria-hidden="true" />
-        </Link>
+        </a>
 
         <button
           className="menu-btn"
@@ -107,10 +104,10 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-          <Link className="btn btn-gold nav-mobile-cta" to="/contact">
+          <a className="btn btn-gold nav-mobile-cta" href={`mailto:${CONTACT_EMAIL}`}>
             Get in touch
             <ArrowUpRight size={15} aria-hidden="true" />
-          </Link>
+          </a>
         </div>
       </nav>
     </header>

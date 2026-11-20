@@ -14,9 +14,8 @@ export const SITE = {
 /* International format without + (254 + national number, no leading 0). */
 export const WHATSAPP_NUMBER = "254115075306";
 
-/* TODO: replace with your real contact email. When empty the
-   email UI is hidden and the form falls back to WhatsApp. */
-export const CONTACT_EMAIL = "";
+/* Public contact email used by the contact links and email form. */
+export const CONTACT_EMAIL = "info@stoney-ridgefarm.co.ke";
 
 /* Placeholder price shown to customers until real prices are set. */
 export function displayPrice(price: string): string {
